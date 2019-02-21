@@ -1,0 +1,32 @@
+
+# https://arxiv.org/pdf/1710.09145.pdf
+FROM kernsuite/base:5
+
+# https://stackoverflow.com/questions/28405902/how-to-set-the-locale-inside-a-ubuntu-docker-container
+RUN docker-apt-install locales && locale-gen en_US.UTF-8
+ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
+
+# https://arxiv.org/pdf/1710.09145.pdf
+# https://github.com/SoFiA-Admin/SoFiA
+RUN docker-apt-install wget gcc g++ python-astropy python-numpy python-scipy python-matplotlib
+
+# https://github.com/SoFiA-Admin/SoFiA
+RUN wget https://github.com/SoFiA-Admin/SoFiA/archive/v1.2.0.tar.gz && \
+    tar xzf v1.2.0.tar.gz && \
+    rm v1.2.0.tar.gz && \
+    cd SoFiA-1.2.0 && \
+    python setup.py build --force --no-gui=True
+
+# https://github.com/SoFiA-Admin/SoFiA
+ENV SOFIA_MODULE_PATH="/SoFiA-1.2.0/build/lib.linux-x86_64-2.7" \
+    SOFIA_PIPELINE_PATH="/SoFiA-1.2.0/sofia_pipeline.py" \
+    PATH="$PATH:/SoFiA-1.2.0"
+
+# https://docs.docker.com/engine/reference/builder/#workdir
+RUN mkdir /data
+WORKDIR /data
+
+# https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#entrypoint
+ENTRYPOINT ["sofia_pipeline.py"]
+CMD ["--help"]
+
