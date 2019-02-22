@@ -7,7 +7,6 @@ import cgatcore.experiment as E
 from cgatcore import pipeline as P
 
 # TODO
-# * add sofia step
 # * task to pull/build docker containers
 
 @originate('master.zip')
@@ -51,6 +50,15 @@ def imaging(infile, outfile):
     # workaround until we get --logfile option to work with casa
     open(outfile, 'a').close()
 
+@split(imaging, ['3.5s', '5.0s'])
+def masking(infile, outfiles):
+    for mask in outfiles:
+        statement = '''/usr/bin/time -o masking.{}.time -v
+        sudo docker run -v "$(pwd)":/data -t sofia hcg-16-master/sofia/HCG16_CD_rob2_MS.{}.nodil.session
+        1> masking.{}.stdout
+        2> masking.{}.stderr'''.format(mask, mask, mask, mask, mask)
+        P.run(statement)
+
 @files(None, 'reset.log')
 def cleanup(infile, outfile):
     statement = '''sudo rm -rf HCG16_C* HCG16_D*
@@ -65,4 +73,3 @@ def main(argv=None):
 
 if __name__ == "__main__":
     sys.exit(P.main(sys.argv))
-
