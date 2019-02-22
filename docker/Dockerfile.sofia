@@ -1,10 +1,10 @@
 
 # https://arxiv.org/pdf/1710.09145.pdf
-FROM kernsuite/base:5
+FROM kernsuite/base:4
 
 # https://stackoverflow.com/questions/28405902/how-to-set-the-locale-inside-a-ubuntu-docker-container
 RUN docker-apt-install locales && locale-gen en_US.UTF-8
-ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
+ENV LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 # https://arxiv.org/pdf/1710.09145.pdf
 # https://github.com/SoFiA-Admin/SoFiA
