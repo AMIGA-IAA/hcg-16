@@ -3,18 +3,26 @@
 from ruffus import *
 import sys
 import os
+import shutil
 import cgatcore.experiment as E
 from cgatcore import pipeline as P
 
-# TODO
-# * task to pull/build docker containers
+@originate('dependency_check.done')
+def dependency_check(outfile):
+    deps = ["wget", "unzip", "tar", "docker", "time"]
+    for cmd in deps:
+        if shutil.which(cmd) is None:
+            raise EnvironmentError("Required dependency \"{}\" not found".format(cmd))
+    open(outfile, 'a').close()
 
+@follows(dependency_check)
 @originate('download_code.done')
 def download_code(outfile):
     statement = '''wget https://github.com/AMIGA-IAA/hcg-16/archive/master.zip &&
     touch download_code.done'''
     P.run(statement)
 
+@follows(dependency_check)
 @originate('download_data.done')
 def download_data(outfile):
     statement = '''wget https://trng-b2share.eudat.eu/api/files/8181b888-24c1-4680-968f-a701ba2221d2/hcg16-data.tar.gz &&
@@ -39,28 +47,24 @@ def prepare_data(infile, outfile):
 @merge('AW*.xp1', 'calibration.log')
 def calibration(infiles, outfile):
     statement = '''/usr/bin/time -o calibration.time -v
-    sudo docker run -v "$(pwd)":/data -t casa --nogui -c hcg-16-master/casa/calibration_flag.py --logfile calibration.log
+    sudo docker run -v "$(pwd)":/data -t amigahub/casa:v1.0 --nogui --logfile calibration.log -c hcg-16-master/casa/calibration_flag.py
     1> calibration.stdout
     2> calibration.stderr'''
     P.run(statement)
-    # workaround until we get --logfile option to work with casa
-    open(outfile, 'a').close()
 
 @transform(calibration, suffix('calibration.log'), 'imaging.log')
 def imaging(infile, outfile):
     statement = '''/usr/bin/time -o imaging.time -v
-    sudo docker run -v "$(pwd)":/data -t casa --nogui -c hcg-16-master/casa/imaging.py --logfile imaging.log
+    sudo docker run -v "$(pwd)":/data -t amigahub/casa:v1.0 --nogui --logfile imaging.log -c hcg-16-master/casa/imaging.py
     1> imaging.stdout
     2> imaging.stderr'''
     P.run(statement)
-    # workaround until we get --logfile option to work with casa
-    open(outfile, 'a').close()
 
 @split(imaging, ['3.5s.dil', '5.0s.nodil'])
 def masking(infile, outfiles):
     for mask in outfiles:
         statement = '''/usr/bin/time -o masking.{}.time -v
-        sudo docker run -v "$(pwd)":/data -t sofia hcg-16-master/sofia/HCG16_CD_rob2_MS.{}.session
+        sudo docker run -v "$(pwd)":/data -t amigahub/sofia:v1.0 hcg-16-master/sofia/HCG16_CD_rob2_MS.{}.session
         1> masking.{}.stdout
         2> masking.{}.stderr'''.format(mask, mask, mask, mask, mask)
         P.run(statement)
