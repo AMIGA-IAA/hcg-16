@@ -9,24 +9,30 @@ from cgatcore import pipeline as P
 # TODO
 # * task to pull/build docker containers
 
-@originate('master.zip')
+@originate('download_code.done')
 def download_code(outfile):
-    statement = '''wget https://github.com/AMIGA-IAA/hcg-16/archive/master.zip'''
+    statement = '''wget https://github.com/AMIGA-IAA/hcg-16/archive/master.zip &&
+    touch download_code.done'''
     P.run(statement)
 
-@originate('hcg16-data.tar.gz')
+@originate('download_data.done')
 def download_data(outfile):
-    statement = '''wget https://trng-b2share.eudat.eu/api/files/8181b888-24c1-4680-968f-a701ba2221d2/hcg16-data.tar.gz'''
+    statement = '''wget https://trng-b2share.eudat.eu/api/files/8181b888-24c1-4680-968f-a701ba2221d2/hcg16-data.tar.gz &&
+    touch download_data.done'''
     P.run(statement)
 
-@transform(download_code, suffix('master.zip'), 'prepare_code.done')
+@transform(download_code, suffix('download_code.done'), 'prepare_code.done')
 def prepare_code(infile, outfile):
-    statement = '''unzip master.zip && rm master.zip && touch prepare_code.done'''
+    statement = '''unzip master.zip &&
+    rm master.zip &&
+    touch prepare_code.done'''
     P.run(statement)
 
-@transform(download_data, suffix('hcg16-data.tar.gz'), 'prepare_data.done')
+@transform(download_data, suffix('download_data.done'), 'prepare_data.done')
 def prepare_data(infile, outfile):
-    statement = '''tar xzf hcg16-data.tar.gz && rm hcg16-data.tar.gz && touch prepare_data.done'''
+    statement = '''tar xzf hcg16-data.tar.gz &&
+    rm hcg16-data.tar.gz &&
+    touch prepare_data.done'''
     P.run(statement)
 
 @follows(prepare_code, prepare_data)
@@ -50,11 +56,11 @@ def imaging(infile, outfile):
     # workaround until we get --logfile option to work with casa
     open(outfile, 'a').close()
 
-@split(imaging, ['3.5s', '5.0s'])
+@split(imaging, ['3.5s.dil', '5.0s.nodil'])
 def masking(infile, outfiles):
     for mask in outfiles:
         statement = '''/usr/bin/time -o masking.{}.time -v
-        sudo docker run -v "$(pwd)":/data -t sofia hcg-16-master/sofia/HCG16_CD_rob2_MS.{}.nodil.session
+        sudo docker run -v "$(pwd)":/data -t sofia hcg-16-master/sofia/HCG16_CD_rob2_MS.{}.session
         1> masking.{}.stdout
         2> masking.{}.stderr'''.format(mask, mask, mask, mask, mask)
         P.run(statement)
@@ -62,7 +68,8 @@ def masking(infile, outfiles):
 @files(None, 'reset.log')
 def cleanup(infile, outfile):
     statement = '''sudo rm -rf HCG16_C* HCG16_D*
-    *gcal* *bcal* *.last *.log *.time *.stdout *.stderr
+    hcg-16-master/ HCG16_source_mask/ AW*.xp1
+    *gcal* *bcal* *.last *.log *.time *.stdout *.stderr *.done
     rflag* ctmp* delays.cal/ flux.cal/ gaincurve.cal/'''
     P.run(statement)
 
