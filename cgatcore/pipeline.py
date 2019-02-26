@@ -68,6 +68,7 @@ def masking(infile, outfiles):
         1> masking.{}.stdout
         2> masking.{}.stderr'''.format(mask, mask, mask, mask, mask)
         P.run(statement)
+        open(outfile, 'a').close()
 
 @files(None, 'reset.log')
 def cleanup(infile, outfile):
