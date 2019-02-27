@@ -7,7 +7,7 @@ set -o errexit
 set -o pipefail
 
 # exit when your script tries to use undeclared variables
-set -o nounset
+#set -o nounset
 
 # trace what gets executed
 #set -o xtrace
@@ -59,16 +59,15 @@ function report_error() {
 
 ### Install/activate conda
 
-if [[ -r Miniconda3-latest-Linux-x86_64.sh ]] ; then
-    log " Conda  downloaded. "
-else
-    log " Downloading conda... "
-    curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh >& /dev/null
-fi
-
 if [[ -d conda-install ]] ; then
     log " Conda installed. "
 else
+    if [[ -r Miniconda3-latest-Linux-x86_64.sh ]] ; then
+        log " Conda  downloaded. "
+    else
+        log " Downloading conda... "
+        curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh >& /dev/null
+    fi
     log " Install conda... "
     bash Miniconda3-latest-Linux-x86_64.sh -b -p conda-install >& /dev/null
 fi
@@ -83,7 +82,7 @@ fi
 
 ### Install cgatcore
 
-if [[ "${CONDA_DEFAULT_ENV}" -eq "cgatcore" ]] ; then
+if [[ "${CONDA_DEFAULT_ENV}" == "cgatcore" ]] ; then
     log " cgatcore environment loaded. "
 else
     log " Activate cgatcore environment... "
