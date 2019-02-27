@@ -73,7 +73,7 @@ else
     bash Miniconda3-latest-Linux-x86_64.sh -b -p conda-install >& /dev/null
 fi
 
-if [[ `which conda` ]] ; then
+if [[ "${CONDA_EXE}" ]] ; then
     log " Conda activated. "
 else
     log " Activate conda... "
@@ -83,7 +83,7 @@ fi
 
 ### Install cgatcore
 
-if [[ `conda env list | grep cgatcore | grep '*'` ]] ; then
+if [[ "${CONDA_DEFAULT_ENV}" -eq "cgatcore" ]] ; then
     log " cgatcore environment loaded. "
 else
     log " Activate cgatcore environment... "
