@@ -86,7 +86,7 @@ if [[ "${CONDA_DEFAULT_ENV}" == "cgatcore" ]] ; then
     log " cgatcore environment loaded. "
 else
     log " Activate cgatcore environment... "
-    conda create --name cgatcore cgatcore --channel bioconda --channel conda-forge --yes && \
+    conda create --name cgatcore cgatcore --channel conda-forge --channel bioconda --yes && \
     conda activate cgatcore
 fi
 
