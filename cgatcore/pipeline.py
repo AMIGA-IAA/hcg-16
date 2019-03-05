@@ -25,7 +25,7 @@ def download_code(outfile):
 @follows(dependency_check)
 @originate('download_data.done')
 def download_data(outfile):
-    statement = '''wget https://trng-b2share.eudat.eu/api/files/8181b888-24c1-4680-968f-a701ba2221d2/hcg16-data.tar.gz &&
+    statement = '''wget https://trng-b2share.eudat.eu/api/files/6ef30445-47ac-42a2-9293-21f9e4fa9bc7/hcg16-data.tar.gz &&
     touch download_data.done'''
     P.run(statement)
 
