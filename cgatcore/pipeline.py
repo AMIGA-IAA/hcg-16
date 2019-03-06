@@ -20,15 +20,13 @@ def dependency_check(outfile):
 @follows(dependency_check)
 @originate('download_code.done')
 def download_code(outfile):
-    statement = '''wget https://github.com/AMIGA-IAA/hcg-16/archive/master.zip &&
-    touch download_code.done'''
+    statement = '''wget {} && touch download_code.done'''.format(PARAMS['input']['code'])
     P.run(statement)
 
 @follows(dependency_check)
 @originate('download_data.done')
 def download_data(outfile):
-    statement = '''wget https://trng-b2share.eudat.eu/api/files/6ef30445-47ac-42a2-9293-21f9e4fa9bc7/hcg16-data.tar.gz &&
-    touch download_data.done'''
+    statement = '''wget {} && touch download_data.done'''.format(PARAMS['input']['data'])
     P.run(statement)
 
 @transform(download_code, suffix('download_code.done'), 'prepare_code.done')
