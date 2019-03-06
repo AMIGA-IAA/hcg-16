@@ -99,6 +99,13 @@ else
     curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/cgatcore/pipeline.py
 fi
 
+if [[ -r pipeline.yml ]] ; then
+    log " Pipeline config downloaded. "
+else
+    log " Download pipeline config... "
+    curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/cgatcore/pipeline.yml
+fi
+
 ### Run pipeline
 
 if [[ -r pipeline.time ]] ; then

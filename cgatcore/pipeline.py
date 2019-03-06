@@ -7,6 +7,8 @@ import shutil
 import cgatcore.experiment as E
 from cgatcore import pipeline as P
 
+PARAMS = P.get_parameters("pipeline.yml")
+
 @originate('dependency_check.done')
 def dependency_check(outfile):
     deps = ["wget", "unzip", "tar", "docker", "time"]
