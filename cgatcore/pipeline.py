@@ -75,7 +75,7 @@ def cleanup(infile, outfile):
     statement = '''sudo rm -rf HCG16_C* HCG16_D*
     hcg-16-master/ HCG16_source_mask/ AW*.xp1
     *gcal* *bcal* *.last *.log *.time *.stdout *.stderr *.done
-    rflag* ctmp* delays.cal/ flux.cal/ gaincurve.cal/'''
+    rflag* ctmp* delays.cal/ flux.cal/ gaincurve.cal/ *dil'''
     P.run(statement)
 
 def main(argv=None):

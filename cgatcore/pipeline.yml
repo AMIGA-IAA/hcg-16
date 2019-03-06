@@ -1,4 +1,4 @@
 
 input:
-    data: https://trng-b2share.eudat.eu/api/files/6ef30445-47ac-42a2-9293-21f9e4fa9bc7/hcg16-data.tar.gz
+    data: https://b2share.eudat.eu/api/files/bc5b9352-17ef-4d83-abf9-1ea676b1e145/hcg16-data.tar.gz
     code: https://github.com/AMIGA-IAA/hcg-16/archive/master.zip
