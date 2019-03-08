@@ -2,6 +2,7 @@ import numpy, matplotlib, os
 import aplpy
 import matplotlib.pyplot as plt
 import matplotlib as mpl
+import astropy.io.fits
 
 font = {'size'   : 14, 'family' : 'serif', 'serif' : 'cm'}
 plt.rc('font', **font)
@@ -12,25 +13,19 @@ plt.rcParams['lines.linewidth'] = 1
 plt.rcParams['axes.linewidth'] = 1
 
 
-def v_opt(v_rad):
-    '''Conversion from radio to optical velocity.'''
-    
-    c = 299792.458 #km/s
-    
-    return c*((1./(1.-(v_rad/c))) - 1.)
-
-def v_rad(v_opt):
-    '''Conversion from radio to optical velocity.'''
-    
-    c = 299792.458 #km/s
-    
-    return c*(1. - (1./(1.+(v_opt/c))))
-
-
 #Define directories where files are stored
 script_dir = os.getcwd()
 casa_dir = os.path.join(script_dir,"../casa/")
 sofia_dir = os.path.join(script_dir,"../sofia/")
+
+
+#Read in the moment 0 map and check that casa produced the correct header
+filename = 'HCG16_CD_rob2_MS.mom0.pbcor.fits'
+tmp = astropy.io.fits.open(casa_dir+filename)
+if tmp[0].header['EQUINOX'] != 1950 or mom0[0].header['EQUINOX'] != 2000:
+    tmp[0].header['EQUINOX'] = 2000
+    tmp.writeto(casa_dir+filename,overwrite=True)
+tmp.close()
 
 
 #Make the moment 0 map figure
