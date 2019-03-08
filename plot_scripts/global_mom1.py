@@ -35,12 +35,12 @@ casa_dir = os.path.join(script_dir,"../casa/")
 sofia_dir = os.path.join(script_dir,"../sofia/")
 
 
-#Read in the moment 0 map and check that casa produced the correct header
+#Read in the moment 1 map and check that casa produced the correct header
 filename = 'HCG16_CD_rob2_MS_ht_mom1.fits'
 tmp = astropy.io.fits.open(sofia_dir+filename)
 if tmp[0].header['EQUINOX'] != 1950 or mom0[0].header['EQUINOX'] != 2000:
     tmp[0].header['EQUINOX'] = 2000
-    tmp.writeto(casa_dir+filename,overwrite=True)
+    tmp.writeto(sofia_dir+filename,overwrite=True)
 tmp.close()
 
 
