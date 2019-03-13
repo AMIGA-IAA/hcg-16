@@ -80,13 +80,20 @@ else
     conda update --all --yes
 fi
 
-### Install cgatcore
+### Install conda environment
+
+if [[ -r env.yml ]] ; then
+    log " Conda environment downloaded. "
+else
+    log " Download conda environment... "
+    curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/conda/env.yml
+fi
 
 if [[ "${CONDA_DEFAULT_ENV}" == "cgatcore" ]] ; then
     log " cgatcore environment loaded. "
 else
     log " Activate cgatcore environment... "
-    conda create --name cgatcore cgatcore --channel conda-forge --channel bioconda --yes && \
+    conda env create --file env.yml && \
     conda activate cgatcore
 fi
 
