@@ -6,7 +6,6 @@ import astropy.io.fits
 
 font = {'size'   : 14, 'family' : 'serif', 'serif' : 'cm'}
 plt.rc('font', **font)
-plt.rcParams['text.usetex'] = True
 plt.rcParams['image.interpolation'] = 'nearest'
 plt.rcParams['image.cmap'] ='gray_r'
 plt.rcParams['lines.linewidth'] = 1
@@ -93,11 +92,11 @@ overlay.show_rgb('HCG16_DECaLS_cutout.jpeg')
 overlay.add_grid()
 overlay.grid.set_color('black')
 
-overlay.add_label(32.25,-10.35,'PGC 8210',horizontalalignment='right',color='yellow',weight='bold')
-overlay.add_label(32.535,-10.32,'NGC 848',horizontalalignment='left',color='yellow',weight='bold')
-overlay.add_label(32.28,-10.17,'HCG 16a',horizontalalignment='right',color='yellow',weight='bold')
-overlay.add_label(32.25,-10.135,'HCG 16b',horizontalalignment='right',color='yellow',weight='bold')
-overlay.add_label(32.45,-10.145,'HCG 16c',horizontalalignment='right',color='yellow',weight='bold')
-overlay.add_label(32.35,-10.22,'HCG 16d',horizontalalignment='right',color='yellow',weight='bold')
+overlay.add_label(32.25,-10.35,'PGC 8210',horizontalalignment='right',color='yellow')
+overlay.add_label(32.535,-10.32,'NGC 848',horizontalalignment='left',color='yellow')
+overlay.add_label(32.28,-10.17,'HCG 16a',horizontalalignment='right',color='yellow')
+overlay.add_label(32.25,-10.135,'HCG 16b',horizontalalignment='right',color='yellow')
+overlay.add_label(32.45,-10.145,'HCG 16c',horizontalalignment='right',color='yellow')
+overlay.add_label(32.35,-10.22,'HCG 16d',horizontalalignment='right',color='yellow')
 
 fig.savefig('HCG16_mom0+DECaLS_overlay.pdf',bbox_inches='tight')

@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 
 font = {'size'   : 14, 'family' : 'serif', 'serif' : 'cm'}
 plt.rc('font', **font)
-plt.rcParams['text.usetex'] = True
 plt.rcParams['image.interpolation'] = 'nearest'
 plt.rcParams['image.cmap'] ='gray_r'
 plt.rcParams['lines.linewidth'] = 1

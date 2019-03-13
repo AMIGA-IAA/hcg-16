@@ -6,7 +6,6 @@ import astropy.io.fits
 
 font = {'size'   : 14, 'family' : 'serif', 'serif' : 'cm'}
 plt.rc('font', **font)
-plt.rcParams['text.usetex'] = True
 plt.rcParams['image.interpolation'] = 'nearest'
 plt.rcParams['image.cmap'] ='gray_r'
 plt.rcParams['lines.linewidth'] = 1
@@ -83,7 +82,7 @@ mom1.beam.set_corner('bottom right')
 cmap = mpl.cm.jet
 norm = mpl.colors.Normalize(vmin=v_opt(3700), vmax=v_opt(4050))
 
-cbar = mpl.colorbar.ColorbarBase(ax2, cmap=cmap,norm=norm,orientation='vertical',label=r'$v_{\mathrm{opt}$ [km/s]')
+cbar = mpl.colorbar.ColorbarBase(ax2, cmap=cmap,norm=norm,orientation='vertical',label=r'$v_{\mathrm{opt}}$ [km/s]')
 
 
 fig.savefig('HCG16_mom1.pdf',bbox_inches='tight')
