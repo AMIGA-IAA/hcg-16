@@ -70,6 +70,16 @@ def masking(infile, outfiles):
         P.run(statement)
         open(mask, 'a').close()
 
+@follows(imaging, masking)
+@merge(imaging, 'plotting.done')
+def plotting():
+    statement = '''/usr/bin/time -o plotting.time -v
+    python hcg-16-master/plot_scripts/absorption_spec.py &&
+    python hcg-16-master/plot_scripts/global_mom0.py &&
+    python hcg-16-master/plot_scripts/global_mom1.py &&
+    touch plotting.done
+    '''
+
 @files(None, 'reset.log')
 def cleanup(infile, outfile):
     statement = '''sudo rm -rf HCG16_C* HCG16_D*
