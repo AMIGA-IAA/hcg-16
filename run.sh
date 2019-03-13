@@ -89,12 +89,12 @@ else
     curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/conda/env.yml
 fi
 
-if [[ "${CONDA_DEFAULT_ENV}" == "cgatcore" ]] ; then
-    log " cgatcore environment loaded. "
+if [[ "${CONDA_DEFAULT_ENV}" == "hcg-16" ]] ; then
+    log " hcg-16 environment loaded. "
 else
-    log " Activate cgatcore environment... "
+    log " Activate hcg-16 environment... "
     conda env create --file env.yml && \
-    conda activate cgatcore
+    conda activate hcg-16
 fi
 
 ### Download pipeline
