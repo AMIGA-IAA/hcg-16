@@ -27,11 +27,6 @@ def v_rad(v_opt):
 
 
 
-#Define directories where files are stored
-script_dir = os.getcwd()
-casa_dir = os.path.join(script_dir,"../casa/")
-sofia_dir = os.path.join(script_dir,"../sofia/")
-
 
 
 v_hcg16d = 3874. #km/s
@@ -42,16 +37,16 @@ dec_hcg16d = -10.184086 #deg
 
 #Read in the cube and check that casa produced the correct header
 filename = 'HCG16_CD_rob0_MS.pbcor.fits'
-tmp = astropy.io.fits.open(casa_dir+filename)
+tmp = astropy.io.fits.open(filename)
 if tmp[0].header['EQUINOX'] != 1950 or mom0[0].header['EQUINOX'] != 2000:
     tmp[0].header['EQUINOX'] = 2000
-    tmp.writeto(casa_dir+filename,overwrite=True)
+    tmp.writeto(filename,overwrite=True)
 tmp.close()
 
 
 
 #Reda in robust=0 cube
-cube_fits = astropy.io.fits.open(casa_dir+filename)[0]
+cube_fits = astropy.io.fits.open(filename)[0]
 
 cube = cube_fits.data
 cube_head = cube_fits.header

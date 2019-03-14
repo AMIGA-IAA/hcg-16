@@ -72,13 +72,14 @@ def masking(infile, outfiles):
 
 @follows(imaging, masking)
 @merge(imaging, 'plotting.done')
-def plotting():
+def plotting(infiles, outfile):
     statement = '''/usr/bin/time -o plotting.time -v
     python hcg-16-master/plot_scripts/absorption_spec.py &&
     python hcg-16-master/plot_scripts/global_mom0.py &&
     python hcg-16-master/plot_scripts/global_mom1.py &&
     touch plotting.done
     '''
+    P.run(statement)
 
 @files(None, 'reset.log')
 def cleanup(infile, outfile):

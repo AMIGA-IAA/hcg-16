@@ -12,18 +12,14 @@ plt.rcParams['lines.linewidth'] = 1
 plt.rcParams['axes.linewidth'] = 1
 
 
-#Define directories where files are stored
-script_dir = os.getcwd()
-casa_dir = os.path.join(script_dir,"../casa/")
-sofia_dir = os.path.join(script_dir,"../sofia/")
 
 
 #Read in the moment 0 map and check that casa produced the correct header
 filename = 'HCG16_CD_rob2_MS.mom0.pbcor.fits'
-tmp = astropy.io.fits.open(casa_dir+filename)
+tmp = astropy.io.fits.open(filename)
 if tmp[0].header['EQUINOX'] != 1950 or mom0[0].header['EQUINOX'] != 2000:
     tmp[0].header['EQUINOX'] = 2000
-    tmp.writeto(casa_dir+filename,overwrite=True)
+    tmp.writeto(filename,overwrite=True)
 tmp.close()
 
 
@@ -42,7 +38,7 @@ ax3.set_yticks([])
 ax3.set_xticks([])
 
 
-mom0 = aplpy.FITSFigure(casa_dir+'HCG16_CD_rob2_MS.mom0.pbcor.fits', figure=fig, subplot=list(ax1.get_position(fig).bounds), slices=[0,0])
+mom0 = aplpy.FITSFigure('HCG16_CD_rob2_MS.mom0.pbcor.fits', figure=fig, subplot=list(ax1.get_position(fig).bounds), slices=[0,0])
 
 mom0.show_arrows([32.5650,32.4848,32.3674,32.4498,32.5119,32.5367],
               [-10.3841,-10.3197,-10.1808,-10.0575,-10.1530,-10.2141],
@@ -85,7 +81,7 @@ cbar = mpl.colorbar.ColorbarBase(ax2, cmap=viridis_cmap,orientation='vertical',l
 #Commands for overlay
 overlay.recenter(32.45, -10.225, radius=0.2)
 
-overlay.show_contour(sofia_dir+'HCG16_CD_rob2_MS_mom0.fits',dimensions=[0,1],slices=[0],
+overlay.show_contour('HCG16_CD_rob2_MS_mom0.fits',dimensions=[0,1],slices=[0],
                colors='lime',levels=[-0.025,0.025,0.1,0.25,0.5,0.75,1.])
 
 overlay.show_rgb('HCG16_DECaLS_cutout.jpeg')

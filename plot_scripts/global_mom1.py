@@ -28,18 +28,14 @@ def v_rad(v_opt):
 
 
 
-#Define directories where files are stored
-script_dir = os.getcwd()
-casa_dir = os.path.join(script_dir,"../casa/")
-sofia_dir = os.path.join(script_dir,"../sofia/")
 
 
 #Read in the moment 1 map and check that casa produced the correct header
 filename = 'HCG16_CD_rob2_MS_ht_mom1.fits'
-tmp = astropy.io.fits.open(sofia_dir+filename)
+tmp = astropy.io.fits.open(filename)
 if tmp[0].header['EQUINOX'] != 1950 or mom0[0].header['EQUINOX'] != 2000:
     tmp[0].header['EQUINOX'] = 2000
-    tmp.writeto(sofia_dir+filename,overwrite=True)
+    tmp.writeto(filename,overwrite=True)
 tmp.close()
 
 
@@ -55,7 +51,7 @@ ax1.set_xticks([])
 ax2.set_yticks([])
 ax2.set_xticks([])
 
-mom1 = aplpy.FITSFigure(sofia_dir+filename, figure=fig, subplot=list(ax1.get_position(fig).bounds), slices=[0,0])
+mom1 = aplpy.FITSFigure(filename, figure=fig, subplot=list(ax1.get_position(fig).bounds), slices=[0,0])
 
 #Commands for moment 1 map
 mom1.recenter(32.45, -10.225, radius=0.2)
