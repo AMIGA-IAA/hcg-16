@@ -78,9 +78,11 @@ history=True,dropdeg=False)
 
 
 #Make simple moment 0 map and export it
-immoments(imagename="HCG16_CD_rob2_MS_cleanmask.image",moments=[0],axis="spectral",region="",box="",chans="0",stokes="",mask="",includepix=[0.00108,1000000],excludepix=-1,outfile="HCG16_CD_rob2_MS_cleanmask.mom0",stretch=False)
+immoments(imagename="HCG16_CD_rob2_MS_cleanmask.image",moments=[0],axis="spectral",region="",box="",chans="",stokes="",mask="",includepix=[0.00108,1000000],excludepix=-1,outfile="HCG16_CD_rob2_MS_cleanmask.mom0",stretch=False)
 
-impbcor(imagename="HCG16_CD_rob2_MS_cleanmask.mom0",pbimage="HCG16_CD_rob2_MS_cleanmask.pb",outfile="HCG16_CD_rob2_MS_cleanmask.mom0.pbcor",overwrite=False,box="",
+immoments(imagename="HCG16_CD_rob2_MS_cleanmask.pb",moments=[0],axis="stokes",region="",box="",chans="0",stokes="",mask="",includepix=-1,excludepix=-1,outfile="HCG16.pb",stretch=False)
+
+impbcor(imagename="HCG16_CD_rob2_MS_cleanmask.mom0",pbimage="HCG16.pb",outfile="HCG16_CD_rob2_MS_cleanmask.mom0.pbcor",overwrite=False,box="",
 region="",chans="",stokes="",mask="",mode="divide",cutoff=-1.0,stretch=False)
 
 imregrid(imagename="HCG16_CD_rob2_MS_cleanmask.mom0.pbcor",template="J2000",output="HCG16_CD_rob2_MS.J2000.mom0.pbcor",asvelocity=True,axes=[-1],shape=[-1],interpolation="linear",decimate=10,replicate=False,overwrite=False)
