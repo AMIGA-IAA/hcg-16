@@ -53,27 +53,27 @@ imregrid(imagename="HCG16_CD_rob2_SC_cleanmask.image.pbcor",template="J2000",out
 #Save fits files
 exportfits(imagename="HCG16_CD_rob2_MS.J2000.image",fitsimage="HCG16_CD_rob2_MS.fits",velocity=True,optical=False,bitpix=-32,
 minpix=0,maxpix=-1,overwrite=True,dropstokes=True,stokeslast=True,
-history=True,dropdeg=False)
+history=True,dropdeg=True)
 
 exportfits(imagename="HCG16_CD_rob0_MS.J2000.image",fitsimage="HCG16_CD_rob0_MS.fits",velocity=True,optical=False,bitpix=-32,
 minpix=0,maxpix=-1,overwrite=True,dropstokes=True,stokeslast=True,
-history=True,dropdeg=False)
+history=True,dropdeg=True)
 
 exportfits(imagename="HCG16_CD_rob2_SC.J2000.image",fitsimage="HCG16_CD_rob2_SC.fits",velocity=True,optical=False,bitpix=-32,
 minpix=0,maxpix=-1,overwrite=True,dropstokes=True,stokeslast=True,
-history=True,dropdeg=False)
+history=True,dropdeg=True)
 
 exportfits(imagename="HCG16_CD_rob2_MS.J2000.image.pbcor",fitsimage="HCG16_CD_rob2_MS.pbcor.fits",velocity=True,optical=False,bitpix=-32,
 minpix=0,maxpix=-1,overwrite=True,dropstokes=True,stokeslast=True,
-history=True,dropdeg=False)
+history=True,dropdeg=True)
 
 exportfits(imagename="HCG16_CD_rob0_MS.J2000.image.pbcor",fitsimage="HCG16_CD_rob0_MS.pbcor.fits",velocity=True,optical=False,bitpix=-32,
 minpix=0,maxpix=-1,overwrite=True,dropstokes=True,stokeslast=True,
-history=True,dropdeg=False)
+history=True,dropdeg=True)
 
 exportfits(imagename="HCG16_CD_rob2_SC.J2000.image.pbcor",fitsimage="HCG16_CD_rob2_SC.pbcor.fits",velocity=True,optical=False,bitpix=-32,
 minpix=0,maxpix=-1,overwrite=True,dropstokes=True,stokeslast=True,
-history=True,dropdeg=False)
+history=True,dropdeg=True)
 
 
 
@@ -88,4 +88,4 @@ region="",chans="",stokes="",mask="",mode="divide",cutoff=-1.0,stretch=False)
 imregrid(imagename="HCG16_CD_rob2_MS_cleanmask.mom0.pbcor",template="J2000",output="HCG16_CD_rob2_MS.J2000.mom0.pbcor",asvelocity=True,axes=[-1],shape=[-1],interpolation="linear",decimate=10,replicate=False,overwrite=False)
 
 exportfits(imagename="HCG16_CD_rob2_MS.J2000.mom0.pbcor",fitsimage="HCG16_CD_rob2_MS.mom0.pbcor.fits",velocity=True,optical=False,bitpix=-32,
-minpix=0,maxpix=-1,overwrite=True,dropstokes=True,stokeslast=True,history=True,dropdeg=False)
+minpix=0,maxpix=-1,overwrite=True,dropstokes=True,stokeslast=True,history=True,dropdeg=True)
