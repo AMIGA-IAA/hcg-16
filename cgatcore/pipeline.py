@@ -70,7 +70,21 @@ def masking(infile, outfiles):
         P.run(statement)
         open(mask, 'a').close()
 
-@follows(imaging, masking)
+@originate('HCG16_DECaLS_cutout.jpeg')
+def get_decals_jpeg():
+    statement = '''
+    wget {} -O HCG16_DECaLS_cutout.jpeg
+    '''.format(PARAMS['decals']['jpeg'])
+    P.run(statement)
+
+@originate('HCG16_DECaLS_r_cutout.fits')
+def get_decals_fits():
+    statement = '''
+    wget {} -O HCG16_DECaLS_r_cutout.fits
+    '''.format(PARAMS['decals']['fits'])
+    P.run(statement)
+
+@follows(imaging, masking, get_decals_jpeg, get_decals_fits)
 @merge(imaging, 'plotting.done')
 def plotting(infiles, outfile):
     statement = '''/usr/bin/time -o plotting.time -v
