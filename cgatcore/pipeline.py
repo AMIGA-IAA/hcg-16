@@ -73,14 +73,14 @@ def masking(infile, outfiles):
 @originate('HCG16_DECaLS_cutout.jpeg')
 def get_decals_jpeg(outfile):
     statement = '''
-    wget {} -O HCG16_DECaLS_cutout.jpeg
+    wget "{}" -O HCG16_DECaLS_cutout.jpeg
     '''.format(PARAMS['decals']['jpeg'])
     P.run(statement)
 
 @originate('HCG16_DECaLS_r_cutout.fits')
 def get_decals_fits(outfile):
     statement = '''
-    wget {} -O HCG16_DECaLS_r_cutout.fits
+    wget "{}" -O HCG16_DECaLS_r_cutout.fits
     '''.format(PARAMS['decals']['fits'])
     P.run(statement)
 
