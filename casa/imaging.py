@@ -89,3 +89,15 @@ imregrid(imagename="HCG16_CD_rob2_MS_cleanmask.mom0.pbcor",template="J2000",outp
 
 exportfits(imagename="HCG16_CD_rob2_MS.J2000.mom0.pbcor",fitsimage="HCG16_CD_rob2_MS.mom0.pbcor.fits",velocity=True,optical=False,bitpix=-32,
 minpix=0,maxpix=-1,overwrite=True,dropstokes=True,stokeslast=True,history=True,dropdeg=True)
+
+
+#Make moment zero of just 3 channels for overplotting on DECaLS detection image
+immoments(imagename="HCG16_CD_rob2_MS_cleanmask.image",moments=[0],axis="spectral",region="",box="",chans="11~13",stokes="",mask="",excludepix=-1,outfile="HCG16_CD_rob2_MS_cleanmask.chn11_13.mom0",stretch=False)
+
+impbcor(imagename="HCG16_CD_rob2_MS_cleanmask.chn11_13.mom0",pbimage="HCG16.pb",outfile="HCG16_CD_rob2_MS_cleanmask.chn11_13.mom0.pbcor",overwrite=False,box="",
+region="",chans="",stokes="",mask="",mode="divide",cutoff=-1.0,stretch=False)
+
+imregrid(imagename="HCG16_CD_rob2_MS_cleanmask.chn11_13.mom0.pbcor",template="J2000",output="HCG16_CD_rob2_MS.J2000.chn11_13.mom0.pbcor",asvelocity=True,axes=[-1],shape=[-1],interpolation="linear",decimate=10,replicate=False,overwrite=False)
+
+exportfits(imagename="HCG16_CD_rob2_MS.J2000.chn11_13.mom0.pbcor",fitsimage="HCG16_CD_rob2_MS.chn11_13.mom0.pbcor.fits",velocity=True,optical=False,bitpix=-32,
+minpix=0,maxpix=-1,overwrite=True,dropstokes=True,stokeslast=True,history=True,dropdeg=True)
