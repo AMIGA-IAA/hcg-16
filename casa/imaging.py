@@ -11,6 +11,11 @@ solint="int",fitorder=1,spw="0",want_cont=True)
 uvcontsub(vis='HCG16_D.split',field="HCG16",fitspw="0:1~7;12;51~58",excludechans=False,combine="",
 solint="int",fitorder=1,spw="0",want_cont=True)
 
+
+#Load manual source mask
+importfits(fitsimage='HCG16_source_mask.fits',imagename='HCG16_source_mask')
+
+
 #Make image with manual source mask
 tclean(vis=['HCG16_C.split.contsub','HCG16_D.split.contsub'],field="HCG16",spw="0:12~51",
 imagename="HCG16_CD_rob2_MS_cleanmask",imsize=[512, 512],cell="4arcsec",specmode="cube",
@@ -101,3 +106,49 @@ imregrid(imagename="HCG16_CD_rob2_MS_cleanmask.chn11_13.mom0.pbcor",template="J2
 
 exportfits(imagename="HCG16_CD_rob2_MS.J2000.chn11_13.mom0.pbcor",fitsimage="HCG16_CD_rob2_MS.chn11_13.mom0.pbcor.fits",velocity=True,optical=False,bitpix=-32,
 minpix=0,maxpix=-1,overwrite=True,dropstokes=True,stokeslast=True,history=True,dropdeg=True)
+
+
+#Make moment maps for each galaxy and feature
+gal_rootnames = ['HCG16a','HCG16b','HCG16c','HCG16d','NGC848','PGC8210']
+tid_rootnames = ['cd_bridge','E_clump','S_clump','NE_tail','NW_tail','SE_tail','NGC848S_tail','NGC848S_loop']
+
+#Import source masks manually made in SlicerAstro
+for name in gal_rootnames:
+    importfits(fitsimage=name+'_mask.fits',imagename=name+'_mask')
+
+for name in tid_rootnames:
+    importfits(fitsimage=name+'_mask.fits',imagename=name+'_mask')
+
+#Make mini-cubes and moments of galaxies
+for name in gal_rootnames:
+    imregrid(imagename="HCG16_CD_rob2_MS_cleanmask.image.pbcor",template=name+'_mask',output=name)
+    immoments(imagename=name,moments=[0,1,2],mask=name+'_mask',outfile=name+'_mom')
+
+#Save galaxy mini-cubes as fits
+for name in gal_rootnames:
+    exportfits(imagename=name,fitsimage=name+".fits",
+    velocity=True,optical=False,overwrite=True,dropstokes=True,stokeslast=True,
+    history=True,dropdeg=True)
+
+#Save galaxy moments as fits
+for name in gal_rootnames:
+    exportfits(imagename=name+"_mom.integrated",fitsimage=name+"_mom0th.fits",
+    velocity=True,optical=False,overwrite=True,dropstokes=True,stokeslast=True,
+    history=True,dropdeg=True)
+    exportfits(imagename=name+"_mom.weighted_coord",fitsimage=name+"_mom1st.fits",
+    velocity=True,optical=False,overwrite=True,dropstokes=True,stokeslast=True,
+    history=True,dropdeg=True)
+    exportfits(imagename=name+"_mom.weighted_dispersion_coord",fitsimage=name+"_mom2nd.fits",
+    velocity=True,optical=False,overwrite=True,dropstokes=True,stokeslast=True,
+    history=True,dropdeg=True)
+
+#Make mini-cubes of tidal features
+for name in tid_rootnames:
+    imregrid(imagename="HCG16_CD_rob2_MS_cleanmask.image.pbcor",template=name+'_mask',output=name)
+    immoments(imagename=name,moments=[0,1,2],mask=name+'_mask',outfile=name+'_mom')
+
+#Save tidal feature mini-cubes as fits
+for name in tid_rootnames:
+    exportfits(imagename=name,fitsimage=name+".fits",
+    velocity=True,optical=False,overwrite=True,dropstokes=True,stokeslast=True,
+    history=True,dropdeg=True)
