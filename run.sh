@@ -82,18 +82,18 @@ fi
 
 ### Install conda environment
 
-if [[ -r env.yml ]] ; then
+if [[ -r environment.yml ]] ; then
     log " Conda environment downloaded. "
 else
     log " Download conda environment... "
-    curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/conda/env.yml
+    curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/environment.yml
 fi
 
 if [[ "${CONDA_DEFAULT_ENV}" == "hcg-16" ]] ; then
     log " hcg-16 environment loaded. "
 else
     log " Activate hcg-16 environment... "
-    conda env create --file env.yml && \
+    conda env create --file environment.yml && \
     conda activate hcg-16
 fi
 
