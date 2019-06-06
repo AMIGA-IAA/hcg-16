@@ -41,6 +41,21 @@ dec_hcg16n = -10.321447 #NGC 848
 dec_hcg16p = -10.320226 #PGC 8210
 
 #Functions
+def gaussian(x, mu, sig):
+    '''
+    Gaussian with mean mu and standard deviation sig.
+    
+    Inputs:
+        x: Independent variable.
+        mu: Mean of Gaussian distribution.
+        sig: Standard deviation of Gaussian.
+        
+    Outputs:
+        y: Value of Gaussian distribution at x.
+    '''
+    
+    return numpy.exp(-numpy.power((x - mu)/sig, 2.)/2.)
+
 def v_rad(v_opt):
     '''
     Conversion from optical to radio velocity.
