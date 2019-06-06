@@ -1,3 +1,5 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/AMIGA-IAA/hcg-16/master)
+
 # Pipeline for HCG-16 Project
 
 Work in progress. Here are the steps to run the pipeline:
