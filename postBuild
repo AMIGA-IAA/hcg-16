@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cd plot_scripts/
+wget https://trng-b2share.eudat.eu/api/files/c81e8731-376e-47f8-ad3d-edc3e106d4e4/hcg-16-notebooks-data.tar.gz
+tar xzf hcg-16-notebooks-data.tar.gz
