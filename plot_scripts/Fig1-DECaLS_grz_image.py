@@ -19,7 +19,7 @@ plt.rcParams['lines.linewidth'] = 1
 plt.rcParams['axes.linewidth'] = 1
 
 #Set to true to save pdf versions of figures
-save_figs = False
+save_figs = True
 
 
 # The files used to make the following plot are:
