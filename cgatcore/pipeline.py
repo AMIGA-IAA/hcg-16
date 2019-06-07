@@ -88,9 +88,9 @@ def get_decals_fits(outfile):
 @merge(imaging, 'plotting.done')
 def plotting(infiles, outfile):
     statement = '''/usr/bin/time -o plotting.time -v
-    python hcg-16-master/plot_scripts/absorption_spec.py &&
-    python hcg-16-master/plot_scripts/global_mom0.py &&
-    python hcg-16-master/plot_scripts/global_mom1.py &&
+    cp hcg-16-master/plot_scripts/*.ipynb . &&
+    cp hcg-16-master/plot_scripts/*.py . &&
+    for n in `ls *.ipynb`; do jupyter nbconvert --execute $n; done &&
     touch plotting.done
     '''
     P.run(statement)
