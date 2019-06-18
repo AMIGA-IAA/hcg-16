@@ -25,7 +25,7 @@ plt.rcParams['axes.linewidth'] = 1
 save_figs = True
 
 
-# The file used to make the following plot is:
+# The files used to make the following plot are:
 
 # In[ ]:
 
