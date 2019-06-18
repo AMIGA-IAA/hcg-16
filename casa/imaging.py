@@ -114,14 +114,14 @@ tid_rootnames = ['cd_bridge','E_clump','S_clump','NE_tail','NW_tail','SE_tail','
 
 #Import source masks manually made in SlicerAstro
 for name in gal_rootnames:
-    importfits(fitsimage=name+'_mask.fits',imagename=name+'_mask')
+    importfits(fitsimage=name+'_mask.fits',imagename=name+'_mask',overwrite=True,defaultaxes=True,defaultaxesvalues=['','','','I'])
 
 for name in tid_rootnames:
-    importfits(fitsimage=name+'_mask.fits',imagename=name+'_mask')
+    importfits(fitsimage=name+'_mask.fits',imagename=name+'_mask',overwrite=True,defaultaxes=True,defaultaxesvalues=['','','','I'])
 
 #Make mini-cubes and moments of galaxies
 for name in gal_rootnames:
-    imregrid(imagename="HCG16_CD_rob2_MS_cleanmask.image.pbcor",template=name+'_mask',output=name)
+    imregrid(imagename="HCG16_CD_rob2_MS_cleanmask.image.pbcor",template=name+'_mask',output=name,overwrite=True)
     immoments(imagename=name,moments=[0,1,2],mask=name+'_mask',outfile=name+'_mom')
 
 #Save galaxy mini-cubes as fits
