@@ -8,6 +8,7 @@ dependencies:
  - aplpy 2.0.*
  - astropy 3.1.*
  - cgatcore 0.5.*
+ - jupyter
  - matplotlib 3.0.*
+ - nbconvert 5.5.*
  - numpy 1.16.*
- - ruffus 2.8.*
