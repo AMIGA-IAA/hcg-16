@@ -1,6 +1,6 @@
 
 input:
-    data: https://b2share.eudat.eu/api/files/0de7e4df-9443-4f20-ae72-fb30893df835/hcg16-data.tar.gz
+    data: https://b2share.eudat.eu/api/files/050591a4-27a8-4b50-b8bc-41e63539e661/hcg16-data.tar.gz
     code: https://github.com/AMIGA-IAA/hcg-16/archive/master.zip
 
 decals:
