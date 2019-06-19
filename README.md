@@ -14,4 +14,4 @@ bash run.sh
 * run the [pipeline](https://github.com/AMIGA-IAA/hcg-16/blob/master/cgatcore/pipeline.py)
 
 ## Pre-requisites
-Please make sure you have `docker` installed on your computer before running `run.sh`.
+Please make sure you have `docker` installed on your computer before running `run.sh`. For the pipeline to execute succesfully will require approximately 7 GB of free space.
