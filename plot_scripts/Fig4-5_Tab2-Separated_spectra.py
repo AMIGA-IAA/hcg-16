@@ -33,7 +33,7 @@ obj_list = ['HCG16a','HCG16b','HCG16c','HCG16d','NGC848','PGC8210',
 #+".fits" or +"_mask.fits"
 
 
-# For each galaxy or feature there is a mini-cube of the HI emission of that object "name.fits" and a mask covering all the emission assigned to that objects "name_mask.fits". The masks were created manually using the SlicerAstro software (not included in the workflow) and were downloaded along with the raw data from the EUDAT service [B2SHARE](b2share.eudat.eu). The exact location of the data are given in the [pipeline.yml](pipeline.yml) file. The mini-cubes were generated in CASA (in the *imaging* step of the workflow), which is described in the script [imaging.py](casa/imaging.py).
+# For each galaxy or feature there is a mini-cube of the HI emission of that object "name.fits" and a mask covering all the emission assigned to that objects "name_mask.fits". The masks were created manually using the SlicerAstro software (not included in the workflow) and were downloaded along with the raw data from the EUDAT service [B2SHARE](http://b2share.eudat.eu). The exact location of the data are given in the [pipeline.yml](pipeline.yml) file. The mini-cubes were generated in CASA (in the *imaging* step of the workflow), which is described in the script [imaging.py](casa/imaging.py).
 
 # Use the mask and mini-cubes to generate a spectrum of each objects and measure the integrated flux, HI mass, mean velocity, and velocity dispersion.
 

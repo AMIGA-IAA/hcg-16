@@ -43,7 +43,7 @@ gal_list = ['HCG16a','HCG16b','HCG16c','HCG16d','NGC848','PGC8210']
 # 
 # 3. Moment 0 and 1 maps of each galaxy.
 # 
-# The moment 0 and 1 maps of the galaxies were generated in the *imaging* step of the workflow using CASA. The exact steps are included in the [imaging.py](casa/imaging.py) script. The masks used to make these moment maps were constructed manually using the [SlicerAstro](github.com/Punzo/SlicerAstro) software package. They were downloaded along with the raw data from the EUDAT service [B2SHARE](b2share.eudat.eu) at the beginnning of the workflow execution. The exact location of the data are given in the [pipeline.yml](pipeline.yml) file.
+# The moment 0 and 1 maps of the galaxies were generated in the *imaging* step of the workflow using CASA. The exact steps are included in the [imaging.py](casa/imaging.py) script. The masks used to make these moment maps were constructed manually using the [SlicerAstro](http://github.com/Punzo/SlicerAstro) software package. They were downloaded along with the raw data from the EUDAT service [B2SHARE](http://b2share.eudat.eu) at the beginnning of the workflow execution. The exact location of the data are given in the [pipeline.yml](pipeline.yml) file.
 
 # Make moment 0 maps.
 

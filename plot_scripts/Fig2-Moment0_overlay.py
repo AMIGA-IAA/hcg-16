@@ -35,7 +35,7 @@ r_image_decals = 'HCG16_DECaLS_r_cutout.fits'
 
 
 # 1. A moment 0 map of HCG 16 generated using a simple $3\sigma$ threshold in each channel (made with CASA). This file was generated in the *imaging* step of the workflow, which is described in the script [imaging.py](casa/imaging.py).
-# 2. A moment 0 map of HCG 16 generated using $3.5\sigma$ mask made with SoFiA after smoothing over various kernel sizes. This file was generated in the *masking* step of the workflow. The SoFiA parameters file which makes this files is [HCG16_CD_rob2_MS.3.5s.dil.session](sofia/HCG16_CD_rob2_MS.3.5s.dil.session).
+# 2. A moment 0 map of HCG 16 generated using $3.5\sigma$ mask made with SoFiA after smoothing over various kernel sizes. This file was generated in the *masking* step of the workflow. The SoFiA parameters file which makes this file is [HCG16_CD_rob2_MS.3.5s.dil.session](sofia/HCG16_CD_rob2_MS.3.5s.dil.session).
 # 3. An $r$-band DECaLS fits image of HCG 16. This file was downloaded directly from the [DECaLS public website](http://legacysurvey.org/). The exact parameters defining the region and pixel size of this images is contained in the [pipeline.yml](pipeline.yml) file.
 
 # In[ ]:

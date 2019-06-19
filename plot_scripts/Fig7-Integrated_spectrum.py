@@ -37,7 +37,7 @@ spec_hipass = 'HCG16-spectrum.11x11.log'
 
 # 1. A $3.5\sigma$ mask of HCG 16 made with SoFiA after smoothing over various kernel sizes. This file was generated in the *masking* step of the workflow. The SoFiA parameters file which makes this file is [HCG16_CD_rob2_MS.3.5s.dil.session](sofia/HCG16_CD_rob2_MS.3.5s.dil.session).
 # 2. The primary beam corrected, multi-scale CLEAN HI cube generated in the *imaging* step using CASA. The script [imaging.py](casa/imaging.py) contains the commands used to generate it.
-# 3. The Green Bank Telescope spectrum of HCG 16 from the paper [Borthakur et al. 2010](iopscience.iop.org/article/10.1088/0004-637X/710/1/385/meta). Provided by S. Borthakur.
+# 3. The Green Bank Telescope spectrum of HCG 16 from the paper [Borthakur et al. 2010](http://iopscience.iop.org/article/10.1088/0004-637X/710/1/385/meta). Provided by S. Borthakur.
 # 4. The HIPASS (HI Parkes All Sky Survey) spectrum of HCG 16. Provided by B. Koribalski (private communication).
 
 # The mask and the cube need to be combined to eliminate regions of the cube which only contribute noise. Then the spatial dimensions of the cube must be collapsed to make a 1-dimensional spectrum.

@@ -56,6 +56,24 @@ def gaussian(x, mu, sig):
     
     return numpy.exp(-numpy.power((x - mu)/sig, 2.)/2.)
 
+def gaussian2d(x, y, mux, muy, sigx, sigy):
+    '''
+    Two dimensional Gaussian with mean (mux,muy) and standard deviations sigx and sigy in the x and y directions respectively.
+    
+    Inputs:
+        x: x coordinate.
+        y: y coordinate.
+        mux: Mean of Gaussian distribution in the x-direction.
+        muy: Mean of Gaussian distribution in the y-direction.
+        sigx: Standard deviation of Gaussian in the x-direction.
+        sigy: Standard deviation of Gaussian in the y-direction.
+        
+    Outputs:
+        val: Value of Gaussian distribution at x,y.
+    '''
+    
+    return numpy.exp(-numpy.power((x - mux)/sigx, 2.)/2.)*numpy.exp(-numpy.power((y - muy)/sigy, 2.)/2.)
+
 def v_rad(v_opt):
     '''
     Conversion from optical to radio velocity.
@@ -175,6 +193,7 @@ def read_fitscube(filename,need_beam=False,widths=False,verbose=False):
 
     beam_factor = (numpy.pi*bmaj*bmin/(pixel**2.))/(4.*numpy.log(2.))
     
+    cube_fits.close()
     
     if need_beam and widths:
         return cube,cube_ra,cube_dec,cube_vel,bmaj,bmin,pa,beam_factor,cube_dx,cube_dy,cube_dv
@@ -184,3 +203,28 @@ def read_fitscube(filename,need_beam=False,widths=False,verbose=False):
         return cube,cube_ra,cube_dec,cube_vel,cube_dx,cube_dy,cube_dv
     else:
         return cube,cube_ra,cube_dec,cube_vel
+    
+def mask_mom1(gal,level=0.2):
+    '''
+    Mask a moment 1 map using a given flux level in the moment 0 map of the same source.
+    
+    Inputs:
+        gal = String of the root file name of the source e.g. 'HCG16a'.
+        level = Level to mask at [Jy km/s per beam].
+        
+    Outputs:
+        tmp.fits = Writes a temporary version of the (masked) moment 1 map.
+    '''
+    
+    file0 = gal+'_mom0th.fits'
+    file1 = gal+'_mom1st.fits'
+    
+    fits0 = astropy.io.fits.open(file0)
+    mom0 = fits0[0].data
+    
+    fits1 = astropy.io.fits.open(file1)
+    mom1 = fits1[0].data
+    
+    fits1[0].data = v_opt(numpy.where(numpy.logical_or(mom0 > level,numpy.isnan(mom0)),mom1,float('nan')))
+    
+    fits1.writeto('tmp.fits',overwrite=True,output_verify='warn')
