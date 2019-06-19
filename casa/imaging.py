@@ -142,13 +142,25 @@ for name in gal_rootnames:
     velocity=True,optical=False,overwrite=True,dropstokes=True,stokeslast=True,
     history=True,dropdeg=True)
 
-#Make mini-cubes of tidal features
+#Make mini-cubes and moments of tidal features
 for name in tid_rootnames:
-    imregrid(imagename="HCG16_CD_rob2_MS_cleanmask.image.pbcor",template=name+'_mask',output=name)
+    imregrid(imagename="HCG16_CD_rob2_MS_cleanmask.image.pbcor",template=name+'_mask',output=name,overwrite=True)
     immoments(imagename=name,moments=[0,1,2],mask=name+'_mask',outfile=name+'_mom')
 
 #Save tidal feature mini-cubes as fits
 for name in tid_rootnames:
     exportfits(imagename=name,fitsimage=name+".fits",
+    velocity=True,optical=False,overwrite=True,dropstokes=True,stokeslast=True,
+    history=True,dropdeg=True)
+
+#Save tidal feature moments as fits
+for name in tid_rootnames:
+    exportfits(imagename=name+"_mom.integrated",fitsimage=name+"_mom0th.fits",
+    velocity=True,optical=False,overwrite=True,dropstokes=True,stokeslast=True,
+    history=True,dropdeg=True)
+    exportfits(imagename=name+"_mom.weighted_coord",fitsimage=name+"_mom1st.fits",
+    velocity=True,optical=False,overwrite=True,dropstokes=True,stokeslast=True,
+    history=True,dropdeg=True)
+    exportfits(imagename=name+"_mom.weighted_dispersion_coord",fitsimage=name+"_mom2nd.fits",
     velocity=True,optical=False,overwrite=True,dropstokes=True,stokeslast=True,
     history=True,dropdeg=True)
