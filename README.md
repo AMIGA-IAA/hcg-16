@@ -18,4 +18,4 @@ Please make sure you have `docker` installed on your computer before running `ru
 
 # Plots for HCG-16 Project
 
-If you do not wish to run the whole pipeline on your local machine (almost) all the figures of this project can be regenerated and modified using the cloud service mybinder. There is a Jupyter notebook for each figure which can my run using the link at the top of this file.
+If you do not wish to run the whole pipeline on your local machine (almost) all the figures of this project can be regenerated and modified using the cloud service mybinder. There is a Jupyter notebook for each figure which can my run using the link at the top of this file. This service can take some time to start so please be patient.
