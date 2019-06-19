@@ -110,7 +110,7 @@ minpix=0,maxpix=-1,overwrite=True,dropstokes=True,stokeslast=True,history=True,d
 
 #Make moment maps for each galaxy and feature
 gal_rootnames = ['HCG16a','HCG16b','HCG16c','HCG16d','NGC848','PGC8210']
-tid_rootnames = ['cd_bridge','E_clump','S_clump','NE_tail','NW_tail','SE_tail','NGC848S_tail','NGC848S_loop']
+tid_rootnames = ['cd_bridge','E_clump','S_clump','NE_tail','NW_tail','SE_tail','NGC848S_tail','NGC848S_loop','NW_clump']
 
 #Import source masks manually made in SlicerAstro
 for name in gal_rootnames:
