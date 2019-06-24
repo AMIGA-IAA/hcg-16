@@ -19,7 +19,7 @@ plt.rcParams['lines.linewidth'] = 1
 plt.rcParams['axes.linewidth'] = 1
 
 #Set to true to save pdf versions of figures
-save_figs = True
+save_figs = False
 
 
 # The files used to make the following plots are:
@@ -81,7 +81,7 @@ Bcmag = numpy.zeros(len(obj_list)) + numpy.nan
 err_Bcmag = numpy.zeros(len(obj_list)) + numpy.nan
 
 #B-band magnitude values from AMIGA private database
-Bcmag[0:6] = [12.76,13.27,13.10,13.42,13.30,15.35]
+Bcmag[0:6] = [12.91, 13.25, 13.30, 13.67, 13.37, 15.17]
 err_Bcmag[0:6] = [0.12,0.13,0.05,0.05,0.10,0.44]
 
 #Make HI deficiency estimates
