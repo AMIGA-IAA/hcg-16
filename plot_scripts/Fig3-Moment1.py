@@ -38,7 +38,7 @@ moment1_sofia = 'HCG16_CD_rob2_MS_ht_mom1.fits'
 
 
 #Initialise figure
-fig = plt.figure(figsize=(8.27,2.*3))
+fig = plt.figure(figsize=(12,9))
 
 #Make axes for plot and colourbar
 ax1 = plt.subplot2grid((1, 18), (0, 0), colspan=13)
@@ -64,20 +64,23 @@ mom1 = aplpy.FITSFigure(hdu, figure=fig, subplot=list(ax1.get_position(fig).boun
 #Re-centre and set size
 mom1.recenter(32.45, -10.225, radius=0.2)
 
-#Add star markers for the galaxy optical centres
-mom1.show_markers(ra_hcg16a,dec_hcg16a,marker='*',c='k',s=50,label='HCG16a')
-mom1.show_markers(ra_hcg16b,dec_hcg16b,marker='*',c='k',s=50,label='HCG16b')
-mom1.show_markers(ra_hcg16c,dec_hcg16c,marker='*',c='k',s=50,label='HCG16c')
-mom1.show_markers(ra_hcg16d,dec_hcg16d,marker='*',c='k',s=50,label='HCG16d')
-mom1.show_markers(ra_hcg16n,dec_hcg16n,marker='*',c='k',s=50,label='NGC848')
-mom1.show_markers(ra_hcg16p,dec_hcg16p,marker='*',c='k',s=50,label='PGC8210')
-
 #Display the data with the chosen colour map
 vel_max = 4050. #km/s
 vel_min = 3700. #km/s
 #These are radio velocities as that what CASA output to SoFiA
 #The colourbar scale will be converted to optical velocity below
 mom1.show_colorscale(cmap='jet',vmin=vel_min*1000.,vmax=vel_max*1000.)
+
+#Overlay isovelocity contours
+mom1.show_contour(hdu,levels=numpy.arange(3000000,5000000,40000),colors='dimgrey')
+
+#Add star markers for the galaxy optical centres
+mom1.show_markers(ra_hcg16a,dec_hcg16a,marker='*',c='k',s=50,label='HCG16a',zorder=3)
+mom1.show_markers(ra_hcg16b,dec_hcg16b,marker='*',c='k',s=50,label='HCG16b',zorder=3)
+mom1.show_markers(ra_hcg16c,dec_hcg16c,marker='*',c='k',s=50,label='HCG16c',zorder=3)
+mom1.show_markers(ra_hcg16d,dec_hcg16d,marker='*',c='k',s=50,label='HCG16d',zorder=3)
+mom1.show_markers(ra_hcg16n,dec_hcg16n,marker='*',c='k',s=50,label='NGC848',zorder=3)
+mom1.show_markers(ra_hcg16p,dec_hcg16p,marker='*',c='k',s=50,label='PGC8210',zorder=3)
 
 #Add grid lines
 mom1.add_grid()

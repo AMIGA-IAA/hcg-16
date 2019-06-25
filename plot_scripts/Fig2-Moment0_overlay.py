@@ -1,131 +1,180 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
-
-import matplotlib,aplpy
-from astropy.wcs import WCS
-from astropy.io import fits
-from general_functions import *
-import matplotlib.pyplot as plt
-
-
-# In[ ]:
-
-
-font = {'size'   : 14, 'family' : 'serif', 'serif' : 'cm'}
-plt.rc('font', **font)
-plt.rcParams['image.interpolation'] = 'nearest'
-plt.rcParams['lines.linewidth'] = 1
-plt.rcParams['axes.linewidth'] = 1
-
-#Set to true to save pdf versions of figures
-save_figs = True
-
-
-# The files used to make the following plot are:
-
-# In[ ]:
-
-
-moment0_casa = 'HCG16_CD_rob2_MS.mom0.pbcor.fits'
-moment0_sofia = 'HCG16_CD_rob2_MS_mom0.fits'
-r_image_decals = 'HCG16_DECaLS_r_cutout.fits'
-
-
-# 1. A moment 0 map of HCG 16 generated using a simple $3\sigma$ threshold in each channel (made with CASA). This file was generated in the *imaging* step of the workflow, which is described in the script [imaging.py](casa/imaging.py).
-# 2. A moment 0 map of HCG 16 generated using $3.5\sigma$ mask made with SoFiA after smoothing over various kernel sizes. This file was generated in the *masking* step of the workflow. The SoFiA parameters file which makes this file is [HCG16_CD_rob2_MS.3.5s.dil.session](sofia/HCG16_CD_rob2_MS.3.5s.dil.session).
-# 3. An $r$-band DECaLS fits image of HCG 16. This file was downloaded directly from the [DECaLS public website](http://legacysurvey.org/). The exact parameters defining the region and pixel size of this images is contained in the [pipeline.yml](pipeline.yml) file.
-
-# In[ ]:
-
-
-#Initialise figure
-fig = plt.figure(figsize=(2.*8.27,2.*3))
-
-#Make subplots for moment 0, colour bar, and r-band image width HI contours
-ax1 = plt.subplot2grid((1, 36), (0, 0), colspan=13)
-ax2 = plt.subplot2grid((1, 36), (0, 14), colspan=1)
-ax3 = plt.subplot2grid((1, 36), (0, 22), colspan=13)
-
-#Remove axis tickets (aplpy win make its own)
-ax1.set_yticks([])
-ax1.set_xticks([])
-ax2.set_yticks([])
-ax2.set_xticks([])
-ax3.set_yticks([])
-ax3.set_xticks([])
-
-#Make CASA moment 0 plot
-mom0 = aplpy.FITSFigure(moment0_casa, figure=fig, subplot=list(ax1.get_position(fig).bounds), slices=[0,0])
-
-#Add arrows labelling features
-mom0.show_arrows([32.5650,32.4848,32.3674,32.4498,32.5119,32.5367],
-              [-10.3841,-10.3197,-10.1808,-10.0575,-10.1530,-10.2141],
-              [0.0407,0.0248,0.0079,-0.0260,-0.0362,-0.0350],
-              [0.0212,0.0512,0.0389,-0.0433,-0.0189,0.0011],color='k',width=0.5)
-
-mom0.add_label(32.5630,-10.3841,'NGC848S tail',horizontalalignment='left')
-mom0.add_label(32.4828,-10.3197,'SE tail',horizontalalignment='left')
-mom0.add_label(32.3654,-10.1808,'NW tail',horizontalalignment='left')
-mom0.add_label(32.4538,-10.0575,'NE tail',horizontalalignment='right')
-mom0.add_label(32.5139,-10.1530,'E clump',horizontalalignment='right')
-mom0.add_label(32.5387,-10.2141,'S clump',horizontalalignment='right')
-
-#Re-centre and set size
-mom0.recenter(32.45, -10.225, radius=0.2)
-
-#Set colour map for moment 0
-viridis_cmap = plt.cm.viridis_r
-viridis_cmap.set_under(color='w')
-
-#Add beam ellipse
-mom0.add_beam()
-mom0.beam.set_color('k')
-mom0.beam.set_corner('bottom right')
-
-#Display the data with the chosen colour map
-mom0.show_colorscale(cmap=viridis_cmap,vmin=1E-6,vmax=1.,interpolation='none')
-
-#Add gridlines
-mom0.add_grid()
-mom0.grid.set_color('black')
-mom0.grid.set_alpha(0.25)
-
-#Show GBT pointing centre
-mom0.show_markers(32.3804, -10.15833,marker='x',c='r')
-
-
-#Make the colourbar
-cbar = matplotlib.colorbar.ColorbarBase(ax2, cmap=viridis_cmap,orientation='vertical',label='Flux [Jy km/s per beam]')
-
-
-#Make r-band image plot
-overlay = aplpy.FITSFigure(r_image_decals, figure=fig, subplot=list(ax3.get_position(fig).bounds), dimensions=[0, 1])
-
-#Re-centre and set size (identical to above command)
-overlay.recenter(32.45, -10.225, radius=0.2)
-
-#Add contours of the SoFiA moment 0 map
-#Aplpy cannot read the SoFiA-generated header (but astropy can) so some tricks are required
-hdu = fits.open(moment0_sofia)
-wcs = WCS(hdu[0].header,naxis=2)
-data = hdu[0].data
-hdu = fits.PrimaryHDU(data)
-hdu.header.update(wcs.to_header())
-overlay.show_contour(hdu,
-               colors='r',levels=[-0.025,0.025,0.1,0.25,0.5,0.75,1.])
-#Contour values in Jy km/s per beam
-
-#Display r-band image
-overlay.show_colorscale(cmap='Greys',vmin=0.0001,vmax=5.,stretch='log')
-
-#Add gridlines
-overlay.add_grid()
-overlay.grid.set_color('black')
-
-#Save
-if save_figs:
-    fig.savefig('Fig2-HCG16_mom0+DECaLS_overlay.pdf',bbox_inches='tight')
-
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import matplotlib,aplpy\n",
+    "from astropy.wcs import WCS\n",
+    "from astropy.io import fits\n",
+    "from general_functions import *\n",
+    "import matplotlib.pyplot as plt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "font = {'size'   : 14, 'family' : 'serif', 'serif' : 'cm'}\n",
+    "plt.rc('font', **font)\n",
+    "plt.rcParams['image.interpolation'] = 'nearest'\n",
+    "plt.rcParams['lines.linewidth'] = 1\n",
+    "plt.rcParams['axes.linewidth'] = 1\n",
+    "\n",
+    "#Set to true to save pdf versions of figures\n",
+    "save_figs = True"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The files used to make the following plot are:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "moment0_casa = 'HCG16_CD_rob2_MS.mom0.pbcor.fits'\n",
+    "moment0_sofia = 'HCG16_CD_rob2_MS_mom0.fits'\n",
+    "r_image_decals = 'HCG16_DECaLS_r_cutout.fits'"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "1. A moment 0 map of HCG 16 generated using a simple $3\\sigma$ threshold in each channel (made with CASA). This file was generated in the *imaging* step of the workflow, which is described in the script [imaging.py](casa/imaging.py).\n",
+    "2. A moment 0 map of HCG 16 generated using $3.5\\sigma$ mask made with SoFiA after smoothing over various kernel sizes. This file was generated in the *masking* step of the workflow. The SoFiA parameters file which makes this file is [HCG16_CD_rob2_MS.3.5s.dil.session](sofia/HCG16_CD_rob2_MS.3.5s.dil.session).\n",
+    "3. An $r$-band DECaLS fits image of HCG 16. This file was downloaded directly from the [DECaLS public website](http://legacysurvey.org/). The exact parameters defining the region and pixel size of this images is contained in the [pipeline.yml](pipeline.yml) file."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Initialise figure\n",
+    "fig = plt.figure(figsize=(2*12,9))\n",
+    "\n",
+    "#Make subplots for moment 0, colour bar, and r-band image width HI contours\n",
+    "ax1 = plt.subplot2grid((1, 36), (0, 0), colspan=13)\n",
+    "ax2 = plt.subplot2grid((1, 36), (0, 14), colspan=1)\n",
+    "ax3 = plt.subplot2grid((1, 36), (0, 22), colspan=13)\n",
+    "\n",
+    "#Remove axis tickets (aplpy win make its own)\n",
+    "ax1.set_yticks([])\n",
+    "ax1.set_xticks([])\n",
+    "ax2.set_yticks([])\n",
+    "ax2.set_xticks([])\n",
+    "ax3.set_yticks([])\n",
+    "ax3.set_xticks([])\n",
+    "\n",
+    "#Make CASA moment 0 plot\n",
+    "mom0 = aplpy.FITSFigure(moment0_casa, figure=fig, subplot=list(ax1.get_position(fig).bounds), slices=[0,0])\n",
+    "\n",
+    "#Add arrows labelling features\n",
+    "mom0.show_arrows([32.5650,32.4848,32.3674,32.4498,32.5119,32.5367],\n",
+    "              [-10.3841,-10.3197,-10.1808,-10.0575,-10.1530,-10.2141],\n",
+    "              [0.0407,0.0248,0.0079,-0.0260,-0.0362,-0.0350],\n",
+    "              [0.0212,0.0512,0.0389,-0.0433,-0.0189,0.0011],color='k',width=0.5)\n",
+    "\n",
+    "mom0.add_label(32.5630,-10.3841,'NGC848S tail',horizontalalignment='left')\n",
+    "mom0.add_label(32.4828,-10.3197,'SE tail',horizontalalignment='left')\n",
+    "mom0.add_label(32.3654,-10.1808,'NW tail',horizontalalignment='left')\n",
+    "mom0.add_label(32.4538,-10.0575,'NE tail',horizontalalignment='right')\n",
+    "mom0.add_label(32.5139,-10.1530,'E clump',horizontalalignment='right')\n",
+    "mom0.add_label(32.5387,-10.2141,'S clump',horizontalalignment='right')\n",
+    "\n",
+    "#Re-centre and set size\n",
+    "mom0.recenter(32.45, -10.225, radius=0.2)\n",
+    "\n",
+    "#Set colour map for moment 0\n",
+    "viridis_cmap = plt.cm.viridis_r\n",
+    "viridis_cmap.set_under(color='w')\n",
+    "\n",
+    "#Add beam ellipse\n",
+    "mom0.add_beam()\n",
+    "mom0.beam.set_color('k')\n",
+    "mom0.beam.set_corner('bottom right')\n",
+    "\n",
+    "#Display the data with the chosen colour map\n",
+    "mom0.show_colorscale(cmap=viridis_cmap,vmin=1E-6,vmax=1.,interpolation='none')\n",
+    "\n",
+    "#Add gridlines\n",
+    "mom0.add_grid()\n",
+    "mom0.grid.set_color('black')\n",
+    "mom0.grid.set_alpha(0.25)\n",
+    "\n",
+    "#Show GBT pointing centre\n",
+    "mom0.show_markers(32.3804, -10.15833,marker='x',c='r')\n",
+    "\n",
+    "\n",
+    "#Make the colourbar\n",
+    "cbar = matplotlib.colorbar.ColorbarBase(ax2, cmap=viridis_cmap,orientation='vertical',label='Flux [Jy km/s per beam]')\n",
+    "\n",
+    "\n",
+    "#Make r-band image plot\n",
+    "overlay = aplpy.FITSFigure(r_image_decals, figure=fig, subplot=list(ax3.get_position(fig).bounds), dimensions=[0, 1])\n",
+    "\n",
+    "#Re-centre and set size (identical to above command)\n",
+    "overlay.recenter(32.45, -10.225, radius=0.2)\n",
+    "\n",
+    "#Add contours of the SoFiA moment 0 map\n",
+    "#Aplpy cannot read the SoFiA-generated header (but astropy can) so some tricks are required\n",
+    "hdu = fits.open(moment0_sofia)\n",
+    "wcs = WCS(hdu[0].header,naxis=2)\n",
+    "data = hdu[0].data\n",
+    "hdu = fits.PrimaryHDU(data)\n",
+    "hdu.header.update(wcs.to_header())\n",
+    "\n",
+    "#Overlay contours\n",
+    "overlay.show_contour(hdu,colors=['black'],\n",
+    "                     levels=[-0.025],linestyle='--')\n",
+    "overlay.show_contour(hdu,colors=['black','blue','purple','red','darkorange','yellow'],\n",
+    "                     levels=[0.025,0.1,0.25,0.5,0.75,1.])\n",
+    "#Contour values in Jy km/s per beam\n",
+    "\n",
+    "#Display r-band image\n",
+    "overlay.show_colorscale(cmap='Greys',vmin=0.0001,vmax=5.,stretch='log')\n",
+    "\n",
+    "#Add gridlines\n",
+    "overlay.add_grid()\n",
+    "overlay.grid.set_color('black')\n",
+    "\n",
+    "#Save\n",
+    "if save_figs:\n",
+    "    fig.savefig('Fig2-HCG16_mom0+DECaLS_overlay.pdf',bbox_inches='tight')"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.7"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
