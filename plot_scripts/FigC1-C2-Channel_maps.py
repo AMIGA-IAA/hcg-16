@@ -66,7 +66,9 @@ for i in range(len(cube_vel)):
     
     #Overlay HI channel contours
     f.show_contour(hdu,
-                   colors='r',levels=numpy.array([-2,2,4,6,8,10,12,14,16,18,20])*0.45E-3)
+                   colors=['black'],levels=numpy.array([-2])*0.45E-3,linestyle='--')
+    f.show_contour(hdu,
+                   colors=['black','blue','purple','red','darkorange'],levels=numpy.array([2,4,8,16,32])*0.45E-3)
 
     #Set colour stretch of background image
     f.show_colorscale(cmap='Greys',vmin=0.0001,vmax=5.,stretch='log')
@@ -81,7 +83,7 @@ for i in range(len(cube_vel)):
 
     #Save
     if save_figs:
-        f.savefig(out_dir+'FigC1-HCG16_core_chnmap_'+str(i)+'.pdf')
+        f.savefig('FigC1-HCG16_core_chnmap_'+str(i)+'.pdf')
 
 
 # Now make channel maps near the SE tail.
@@ -109,7 +111,9 @@ for i in range(len(cube_vel)):
     
     #Overlay HI channel contours
     f.show_contour(hdu,
-                   colors='r',levels=numpy.array([-2,2,4,6,8,10,12,14,16,18,20])*0.45E-3)
+                   colors=['black'],levels=numpy.array([-2])*0.45E-3,linestyle='--')
+    f.show_contour(hdu,
+                   colors=['black','blue','purple','red','darkorange'],levels=numpy.array([2,4,8,16,32])*0.45E-3)
 
     #Set colour stretch of background image
     f.show_colorscale(cmap='Greys',vmin=0.0001,vmax=5.,stretch='log')
@@ -124,5 +128,11 @@ for i in range(len(cube_vel)):
 
     #Save
     if save_figs:
-        f.savefig(out_dir+'FigC2-HCG16_tail_chnmap_'+str(i)+'.pdf')
+        f.savefig('FigC2-HCG16_tail_chnmap_'+str(i)+'.pdf')
+
+
+# In[ ]:
+
+
+
 
