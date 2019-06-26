@@ -20,7 +20,6 @@ plt.rc('font', **font)
 plt.rcParams['image.interpolation'] = 'nearest'
 plt.rcParams['lines.linewidth'] = 1
 plt.rcParams['axes.linewidth'] = 1
-plt.rcParams['text.usetex'] = True
 
 #Set to true to save pdf versions of figures
 save_figs = True
