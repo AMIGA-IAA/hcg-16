@@ -1,157 +1,97 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "import matplotlib,aplpy\n",
-    "from astropy.io import fits\n",
-    "from general_functions import *\n",
-    "import matplotlib.pyplot as plt\n",
-    "from astropy.coordinates import SkyCoord\n",
-    "from astropy.wcs import WCS"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "font = {'size'   : 14, 'family' : 'serif', 'serif' : 'cm'}\n",
-    "plt.rc('font', **font)\n",
-    "plt.rcParams['image.interpolation'] = 'nearest'\n",
-    "plt.rcParams['lines.linewidth'] = 1\n",
-    "plt.rcParams['axes.linewidth'] = 1\n",
-    "\n",
-    "#Set to true to save pdf versions of figures\n",
-    "save_figs = True"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "The file used to make the following plot is:"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "cube_rob0_casa = 'HCG16_CD_rob0_MS.pbcor.fits'"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "1. The primary beam corrected, multi-scale CLEAN HI robust=0 cube generated in the *imaging* step using CASA. The script [imaging.py](casa/imaging.py) contains the commands used to generate it. This cube has better resolution (but worse sensitivity) than the robust=2 cube used for the rest of the analysis."
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "Read in the cube."
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "cube,cube_ra,cube_dec,cube_vel,bmaj,bmin,pa,beam_factor = read_fitscube(cube_rob0_casa,need_beam=True)"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "Generate the spectral profile at the centre of HCG 16d by weight the pixels with a 2D Gaussian with the demensions of the beam."
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "#Create empyt weights array\n",
-    "pix_wts = numpy.zeros(numpy.shape(cube[0]))\n",
-    "\n",
-    "#Calculate the separations in the x and y directions\n",
-    "#Then weight with a 2D Gaussian\n",
-    "for i in range(len(cube_ra)):\n",
-    "    for j in range(len(cube_dec)):\n",
-    "        dec_sep = cube_dec[j]-dec_hcg16d\n",
-    "        ra_sep = (cube_ra[i]-ra_hcg16d)*numpy.cos((cube_dec[j]+dec_hcg16d)*numpy.pi/360.)\n",
-    "        \n",
-    "        #Calculate weights\n",
-    "        pix_wts[j][i] = gaussian2d(ra_sep,dec_sep,0.,0.,bmin/(2.3548*3600.),bmaj/(2.3548*3600.))\n",
-    "        \n",
-    "#Apply pixel weights to the cube\n",
-    "for i in range(len(cube_vel)):\n",
-    "    cube[i] = cube[i]*pix_wts\n",
-    "\n",
-    "#Make spectral profile\n",
-    "absorp_spec = 1000.*numpy.nansum(numpy.nansum(cube,axis=1),axis=1)/beam_factor"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "#Initialise figure\n",
-    "fig = plt.subplots(figsize=(8.27,4.))\n",
-    "\n",
-    "#Plot the spectrum\n",
-    "plt.step(cube_vel,absorp_spec,where='mid',c='k')\n",
-    "\n",
-    "#Add dashed line showing redshift of optical emission lines\n",
-    "plt.axvline(v_hcg16d,c='k',ls='dashed')\n",
-    "plt.axhline(0.,c='k')\n",
-    "\n",
-    "#Label axes\n",
-    "plt.xlabel(r'$v_\\mathrm{opt}$ [km/s]')\n",
-    "plt.ylabel('Flux Density [mJy]')\n",
-    "\n",
-    "#Set axes limits\n",
-    "plt.xlim(3600.,4300.)\n",
-    "plt.ylim(-1.6,1.6)\n",
-    "\n",
-    "#Save\n",
-    "if save_figs:\n",
-    "    fig.savefig('Fig12-HCG16d_absorption_spec.pdf',bbox_inches='tight')"
-   ]
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.6.7"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 2
-}
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[ ]:
+
+
+import matplotlib,aplpy
+from astropy.io import fits
+from general_functions import *
+import matplotlib.pyplot as plt
+from astropy.coordinates import SkyCoord
+from astropy.wcs import WCS
+
+
+# In[ ]:
+
+
+font = {'size'   : 14, 'family' : 'serif', 'serif' : 'cm'}
+plt.rc('font', **font)
+plt.rcParams['image.interpolation'] = 'nearest'
+plt.rcParams['lines.linewidth'] = 1
+plt.rcParams['axes.linewidth'] = 1
+plt.rcParams['text.usetex'] = True
+
+#Set to true to save pdf versions of figures
+save_figs = True
+
+
+# The file used to make the following plot is:
+
+# In[ ]:
+
+
+cube_rob0_casa = 'HCG16_CD_rob0_MS.pbcor.fits'
+
+
+# 1. The primary beam corrected, multi-scale CLEAN HI robust=0 cube generated in the *imaging* step using CASA. The script [imaging.py](casa/imaging.py) contains the commands used to generate it. This cube has better resolution (but worse sensitivity) than the robust=2 cube used for the rest of the analysis.
+
+# Read in the cube.
+
+# In[ ]:
+
+
+cube,cube_ra,cube_dec,cube_vel,bmaj,bmin,pa,beam_factor = read_fitscube(cube_rob0_casa,need_beam=True)
+
+
+# Generate the spectral profile at the centre of HCG 16d by weight the pixels with a 2D Gaussian with the demensions of the beam.
+
+# In[ ]:
+
+
+#Create empyt weights array
+pix_wts = numpy.zeros(numpy.shape(cube[0]))
+
+#Calculate the separations in the x and y directions
+#Then weight with a 2D Gaussian
+for i in range(len(cube_ra)):
+    for j in range(len(cube_dec)):
+        dec_sep = cube_dec[j]-dec_hcg16d
+        ra_sep = (cube_ra[i]-ra_hcg16d)*numpy.cos((cube_dec[j]+dec_hcg16d)*numpy.pi/360.)
+        
+        #Calculate weights
+        pix_wts[j][i] = gaussian2d(ra_sep,dec_sep,0.,0.,bmin/(2.3548*3600.),bmaj/(2.3548*3600.))
+        
+#Apply pixel weights to the cube
+for i in range(len(cube_vel)):
+    cube[i] = cube[i]*pix_wts
+
+#Make spectral profile
+absorp_spec = 1000.*numpy.nansum(numpy.nansum(cube,axis=1),axis=1)/beam_factor
+
+
+# In[ ]:
+
+
+#Initialise figure
+fig = plt.subplots(figsize=(8.27,4.))
+
+#Plot the spectrum
+plt.step(cube_vel,absorp_spec,where='mid',c='k')
+
+#Add dashed line showing redshift of optical emission lines
+plt.axvline(v_hcg16d,c='k',ls='dashed')
+plt.axhline(0.,c='k')
+
+#Label axes
+plt.xlabel(r'$v_\mathrm{opt}$ [km/s]')
+plt.ylabel('Flux Density [mJy]')
+
+#Set axes limits
+plt.xlim(3600.,4300.)
+plt.ylim(-1.6,1.6)
+
+#Save
+if save_figs:
+    plt.savefig('Fig12-HCG16d_absorption_spec.pdf',bbox_inches='tight')
+
