@@ -13,8 +13,10 @@ bash run.sh
 * download the input data
 * run the [pipeline](https://github.com/AMIGA-IAA/hcg-16/blob/master/cgatcore/pipeline.py)
 
+Note: This will install `conda` on your machine if it is not already installed.
+
 ## Pre-requisites
-Please make sure you have `docker` installed on your computer before running `run.sh`. For the pipeline to execute succesfully will require approximately 7 GB of free space.
+Please make sure you have `docker` installed on your computer before running `run.sh`. For the pipeline to execute succesfully will require approximately 10 GB of free space. Also be aware that `docker` requires sudo access and may request the password during some steps of the pipeline.
 
 # Plots for HCG-16 Project
 
