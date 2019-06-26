@@ -49,7 +49,7 @@ obj_list = ['NW_clump','E_clump','S_clump']
 
 
 #Initialise figure using DECaLS r-band image
-f = aplpy.FITSFigure(r_image_decals,figsize=(8.27,2.*3),dimensions=[0,1])
+f = aplpy.FITSFigure(r_image_decals,figsize=(6.,4.3),dimensions=[0,1])
 
 #Display DECaLS grz image
 f.show_rgb(grz_image_decals)
@@ -67,7 +67,7 @@ f.grid.set_color('black')
 
 #Save
 if save_figs:
-    plt.savefig('Fig16-NW_clump_mom0_cont.pdf',bbox_inches='tight')
+    plt.savefig('Fig16-NW_clump_mom0_cont.pdf')
 
 
 # In[ ]:
@@ -77,7 +77,7 @@ if save_figs:
 mask_mom1(gal='NW_clump',level=0.1)
 
 #Initialise figure for clipped map
-f = aplpy.FITSFigure('tmp.fits',figsize=(8.27,2.*3),dimensions=[0,1])
+f = aplpy.FITSFigure('tmp.fits',figsize=(6.,4.3),dimensions=[0,1])
 
 #Recentre and resize
 f.recenter(32.356,  -10.125, radius=1.5/60.)
@@ -100,14 +100,14 @@ f.beam.set_corner('bottom right')
 
 #Save
 if save_figs:
-    plt.savefig('Fig16-NW_clump_mom1.pdf',bbox_inches='tight')
+    plt.savefig('Fig16-NW_clump_mom1.pdf')
 
 
 # In[ ]:
 
 
 #Initialise figure using DECaLS r-band image
-f = aplpy.FITSFigure(r_image_decals,figsize=(8.27,2.*3),dimensions=[0,1])
+f = aplpy.FITSFigure(r_image_decals,figsize=(6.,4.3),dimensions=[0,1])
 
 #Display DECaLS grz image
 f.show_rgb(grz_image_decals)
@@ -125,7 +125,7 @@ f.grid.set_color('black')
 
 #Save
 if save_figs:
-    plt.savefig('Fig16-E_clump_mom0_cont.pdf',bbox_inches='tight')
+    plt.savefig('Fig16-E_clump_mom0_cont.pdf')
 
 
 # In[ ]:
@@ -135,7 +135,7 @@ if save_figs:
 mask_mom1(gal='E_clump',level=0.1)
 
 #Initialise figure for clipped map
-f = aplpy.FITSFigure('tmp.fits',figsize=(8.27,2.*3),dimensions=[0,1])
+f = aplpy.FITSFigure('tmp.fits',figsize=(6.,4.3),dimensions=[0,1])
 
 #Recentre and resize
 f.recenter(32.463,  -10.181, radius=1.5/60.)
@@ -158,14 +158,14 @@ f.beam.set_corner('bottom right')
 
 #Save
 if save_figs:
-    plt.savefig('Fig16-E_clump_mom1.pdf',bbox_inches='tight')
+    plt.savefig('Fig16-E_clump_mom1.pdf')
 
 
 # In[ ]:
 
 
 #Initialise figure using DECaLS r-band image
-f = aplpy.FITSFigure(r_image_decals,figsize=(8.27,2.*3),dimensions=[0,1])
+f = aplpy.FITSFigure(r_image_decals,figsize=(6.,4.3),dimensions=[0,1])
 
 #Display DECaLS grz image
 f.show_rgb(grz_image_decals)
@@ -183,7 +183,7 @@ f.grid.set_color('black')
 
 #Save
 if save_figs:
-    plt.savefig('Fig16-S_clump_mom0_cont.pdf',bbox_inches='tight')
+    plt.savefig('Fig16-S_clump_mom0_cont.pdf')
 
 
 # In[ ]:
@@ -193,7 +193,7 @@ if save_figs:
 mask_mom1(gal='S_clump',level=0.1)
 
 #Initialise figure for clipped map
-f = aplpy.FITSFigure('tmp.fits',figsize=(8.27,2.*3),dimensions=[0,1])
+f = aplpy.FITSFigure('tmp.fits',figsize=(6.,4.3),dimensions=[0,1])
 
 #Recentre and resize
 f.recenter(32.475,  -10.215, radius=1.5/60.)
@@ -216,5 +216,5 @@ f.beam.set_corner('bottom right')
 
 #Save
 if save_figs:
-    plt.savefig('Fig16-S_clump_mom1.pdf',bbox_inches='tight')
+    plt.savefig('Fig16-S_clump_mom1.pdf')
 
