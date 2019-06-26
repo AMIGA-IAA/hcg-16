@@ -67,7 +67,7 @@ f.grid.set_color('black')
 
 #Save
 if save_figs:
-    plt.savefig(out_dir+'Fig16-NW_clump_mom0_cont.pdf',bbox_inches='tight')
+    plt.savefig('Fig16-NW_clump_mom0_cont.pdf',bbox_inches='tight')
 
 
 # In[ ]:
@@ -100,7 +100,7 @@ f.beam.set_corner('bottom right')
 
 #Save
 if save_figs:
-    plt.savefig(out_dir+'Fig16-NW_clump_mom1.pdf',bbox_inches='tight')
+    plt.savefig('Fig16-NW_clump_mom1.pdf',bbox_inches='tight')
 
 
 # In[ ]:
@@ -125,7 +125,7 @@ f.grid.set_color('black')
 
 #Save
 if save_figs:
-    plt.savefig(out_dir+'Fig16-E_clump_mom0_cont.pdf',bbox_inches='tight')
+    plt.savefig('Fig16-E_clump_mom0_cont.pdf',bbox_inches='tight')
 
 
 # In[ ]:
@@ -158,7 +158,7 @@ f.beam.set_corner('bottom right')
 
 #Save
 if save_figs:
-    plt.savefig(out_dir+'Fig16-E_clump_mom1.pdf',bbox_inches='tight')
+    plt.savefig('Fig16-E_clump_mom1.pdf',bbox_inches='tight')
 
 
 # In[ ]:
@@ -183,7 +183,7 @@ f.grid.set_color('black')
 
 #Save
 if save_figs:
-    plt.savefig(out_dir+'Fig16-S_clump_mom0_cont.pdf',bbox_inches='tight')
+    plt.savefig('Fig16-S_clump_mom0_cont.pdf',bbox_inches='tight')
 
 
 # In[ ]:
@@ -216,5 +216,5 @@ f.beam.set_corner('bottom right')
 
 #Save
 if save_figs:
-    plt.savefig(out_dir+'Fig16-S_clump_mom1.pdf',bbox_inches='tight')
+    plt.savefig('Fig16-S_clump_mom1.pdf',bbox_inches='tight')
 
