@@ -16,8 +16,8 @@ bash run.sh
 Note: This will install `conda` on your machine if it is not already installed.
 
 ## Pre-requisites
-Please make sure you have `docker` installed on your computer before running `run.sh`. For the pipeline to execute succesfully will require approximately 10 GB of free space. Also be aware that `docker` requires sudo access and may request the password during some steps of the pipeline.
+Please make sure you have `docker` installed on your computer before running `run.sh`. For the pipeline to execute succesfully it will require approximately 10 GB of free space. Also be aware that `docker` requires sudo access and may request the password during some steps of the pipeline.
 
 # Plots for HCG-16 Project
 
-If you do not wish to run the whole pipeline on your local machine (almost) all the figures of this project can be regenerated and modified using the cloud service mybinder. There is a Jupyter notebook for each figure which can my run using the link at the top of this file. This service can take some time to start so please be patient.
+If you do not wish to run the whole pipeline on your local machine (almost) all the figures of this project can be regenerated and modified using the cloud service [mybinder](https://mybinder.org/). There is a Jupyter notebook for each figure which can my run using [this link](https://mybinder.org/v2/gh/AMIGA-IAA/hcg-16/master). This service can take some time to start so please be patient.
