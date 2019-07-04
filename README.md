@@ -15,7 +15,7 @@ bash run.sh
 * download the input data
 * run the [pipeline](https://github.com/AMIGA-IAA/hcg-16/blob/master/cgatcore/pipeline.py)
 
-If you have already downloaded everything and just want to re-run the pipeline then you can do so with the following command:
+If you have already downloaded everything and just want to re-run the pipeline then you can do so with the following command (Note: the hcg-16 conda environment created above must be active):
 ```
 python pipeline.py make plotting --local --timeit=pipeline.time
 ```
