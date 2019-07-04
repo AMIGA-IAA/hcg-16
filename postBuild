@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 cd plot_scripts/
-wget https://trng-b2share.eudat.eu/api/files/2abf7fbc-1471-477e-9e5f-4f9dcd28294a/plot_files.zip
+wget https://trng-b2share.eudat.eu/api/files/8c7bdf7d-98dd-4e0c-9c17-e936ab7a811c/plot_files.zip
 unzip plot_files.zip
