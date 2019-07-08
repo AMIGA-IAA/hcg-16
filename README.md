@@ -19,7 +19,7 @@ If you have already downloaded everything and just want to re-run the pipeline t
 ```
 python pipeline.py make plotting --local --timeit=pipeline.time
 ```
-A present it is advised that you move or delete any output files before re-running the pipeline, as some of these files won't be overwritten by default and may cause the pipeline to crash or not generate the desired output.
+At present it is advised that you move or delete any output files before re-running the pipeline, as some of these files won't be overwritten by default and may cause the pipeline to crash or not generate the desired output.
 
 ## Pre-requisites
 Please make sure you have `docker` installed on your computer before running `run.sh`. For the pipeline to execute succesfully it will require approximately 10 GB of free space. Also be aware that `docker` requires sudo access and may request the password during some steps of the pipeline.
