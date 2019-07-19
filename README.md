@@ -34,3 +34,7 @@ If you do not wish to run the whole pipeline on your local machine (almost) all 
 and modified using the cloud service [mybinder](https://mybinder.org/). There is a Jupyter notebook for each figure which can
 be run using [this link](https://mybinder.org/v2/gh/AMIGA-IAA/hcg-16/master). This service can take some time to start so please
 be patient.
+
+# Final data and visualisation
+
+If you are only interested in downloading the final reduced data cubes these are located at stored on the [EUDAT B2SHARE](https://b2share.eudat.eu/records/7c8655b6f25348358b4e6fece7ab6016) service (DOI: 10.23728/b2share.7c8655b6f25348358b4e6fece7ab6016). There is also a 3D visualisation of the HI data cube hosted on the [AMIGA webpage](http://amiga.iaa.es/FCKeditor/UserFiles/X3D/HCG16/HCG16.html).
