@@ -2,4 +2,4 @@
 
 cd plot_scripts/
 wget https://b2share.eudat.eu/api/files/9c86eda9-58ff-419b-99a1-a3de1e451ef6/HCG16_final_data.tar.gz
-tar xzv HCG16_final_data.tar.gz
+tar -xzf HCG16_final_data.tar.gz
