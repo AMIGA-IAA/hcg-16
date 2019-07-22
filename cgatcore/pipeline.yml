@@ -4,5 +4,5 @@ input:
     code: https://github.com/AMIGA-IAA/hcg-16/archive/master.zip
 
 decals:
-    jpeg: "http://legacysurvey.org//viewer/jpeg-cutout?ra=32.4509&dec=-10.2335&width=3000&height=3000&pixscale=0.524&layer=decals-dr8"
-    fits: "http://legacysurvey.org//viewer/fits-cutout?ra=32.4509&dec=-10.2335&width=3000&height=3000&pixscale=0.524&layer=decals-dr8&bands=r"
+    jpeg: "http://legacysurvey.org//viewer/jpeg-cutout?ra=32.4509&dec=-10.2335&width=3000&height=3000&pixscale=0.524&layer=decals-dr7"
+    fits: "http://legacysurvey.org//viewer/fits-cutout?ra=32.4509&dec=-10.2335&width=3000&height=3000&pixscale=0.524&layer=decals-dr7&bands=r"
