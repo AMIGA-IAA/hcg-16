@@ -48,7 +48,7 @@ cube_casa = 'HCG16_CD_rob2_MS.pbcor.fits'
 cube,cube_ra,cube_dec,cube_vel = read_fitscube(cube_casa)
 
 #Make map for each channel
-for i in range(len(cube_vel)/2):
+for i in range(int(len(cube_vel)/2)):
     #Initialise background figure
     f = aplpy.FITSFigure(r_image_decals,figsize=(12,9),dimensions=[0,1])
 
@@ -92,7 +92,7 @@ for i in range(len(cube_vel)/2):
 #Now run the second half of the cube
 
 #Make map for each channel
-for i in range(len(cube_vel)/2,len(cube_vel)):
+for i in range(int(len(cube_vel)/2),len(cube_vel)):
     #Initialise background figure
     f = aplpy.FITSFigure(r_image_decals,figsize=(12,9),dimensions=[0,1])
 
@@ -139,7 +139,7 @@ for i in range(len(cube_vel)/2,len(cube_vel)):
 cube,cube_ra,cube_dec,cube_vel = read_fitscube(cube_casa)
 
 #Make map for each channel
-for i in range(len(cube_vel)/2):
+for i in range(int(len(cube_vel)/2)):
     #Initialise background figure
     f = aplpy.FITSFigure(r_image_decals,figsize=(14,12),dimensions=[0,1])
 
@@ -183,7 +183,7 @@ for i in range(len(cube_vel)/2):
 #Now run the second half of the cube
 
 #Make map for each channel
-for i in range(len(cube_vel)/2,len(cube_vel)):
+for i in range(int(len(cube_vel)/2),len(cube_vel)):
     #Initialise background figure
     f = aplpy.FITSFigure(r_image_decals,figsize=(14,12),dimensions=[0,1])
 
