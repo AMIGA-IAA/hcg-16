@@ -1,7 +1,8 @@
-
+#!/usr/bin/env python
 # coding: utf-8
 
 # In[ ]:
+
 
 import matplotlib,aplpy
 from astropy.io import fits
@@ -11,6 +12,7 @@ from astropy.wcs import WCS
 
 
 # In[ ]:
+
 
 font = {'size'   : 14, 'family' : 'serif', 'serif' : 'cm'}
 plt.rc('font', **font)
@@ -25,6 +27,7 @@ save_figs = True
 # The files used to make the following plot are:
 
 # In[ ]:
+
 
 r_image_decals = 'HCG16_DECaLS_r_cutout.fits'
 grz_image_decals = 'HCG16_DECaLS_cutout.jpeg'
@@ -43,6 +46,7 @@ cube_casa = 'HCG16_CD_rob2_MS.pbcor.fits'
 # It is necessary to run through the cube in two halves to prevent the notebook from stalling.
 
 # In[ ]:
+
 
 #Load the cube
 cube,cube_ra,cube_dec,cube_vel = read_fitscube(cube_casa)
@@ -88,6 +92,7 @@ for i in range(int(len(cube_vel)/2)):
 
 
 # In[ ]:
+
 
 #Now run the second half of the cube
 
@@ -135,6 +140,7 @@ for i in range(int(len(cube_vel)/2),len(cube_vel)):
 
 # In[ ]:
 
+
 #Load the cube
 cube,cube_ra,cube_dec,cube_vel = read_fitscube(cube_casa)
 
@@ -179,6 +185,7 @@ for i in range(int(len(cube_vel)/2)):
 
 
 # In[ ]:
+
 
 #Now run the second half of the cube
 
