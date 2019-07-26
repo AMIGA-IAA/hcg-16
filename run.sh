@@ -89,10 +89,15 @@ else
     curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/environment.yml
 fi
 
+EXISTS_ENV=$(conda env list | grep hcg-16)
+
 if [[ "${CONDA_DEFAULT_ENV}" == "hcg-16" ]] ; then
     log " hcg-16 environment loaded. "
+elif [[ "${EXISTS_ENV}" != "" ]] ; then
+    log " Activate hcg-16 environment..."
+    conda activate hcg-16
 else
-    log " Activate hcg-16 environment... "
+    log " Install hcg-16 environment... "
     conda env create --file environment.yml && \
     conda activate hcg-16
 fi
