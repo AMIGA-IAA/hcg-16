@@ -89,7 +89,7 @@ else
     curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/environment.yml
 fi
 
-EXISTS_ENV=$(conda env list | grep hcg-16)
+EXISTS_ENV=$(conda env list | grep hcg-16) || $(echo "")
 
 if [[ "${CONDA_DEFAULT_ENV}" == "hcg-16" ]] ; then
     log " hcg-16 environment loaded. "
