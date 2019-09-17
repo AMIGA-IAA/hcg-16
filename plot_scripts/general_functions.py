@@ -126,7 +126,7 @@ def logMHI_pred(B_c,D,B_c_err,D_err):
     
     return logMHI,logMHI_err
 
-def read_fitscube(filename,need_beam=False,widths=False,verbose=False):
+def read_fitscube(filename,need_beam=False,widths=False,mask=False,verbose=False):
     '''
     Reads a fits cube that is RA, Dec, Vel and builds the axes.
     
@@ -163,12 +163,12 @@ def read_fitscube(filename,need_beam=False,widths=False,verbose=False):
     cube_dec = cube_head['CRVAL2'] + cube_dy * numpy.arange(1,1+cube_head['NAXIS2']) - cube_dy * cube_head['CRPIX2'] # Dec
     cube_vel = cube_head['CRVAL3'] + cube_dv * numpy.arange(1,1+cube_head['NAXIS3']) - cube_dv * cube_head['CRPIX3']
 
-    if 'm/s' == str.strip(cube_head['CUNIT3']):
+    if 'm/s' == str.strip(cube_head['CUNIT3']) or 'M/S' == str.strip(cube_head['CUNIT3']):
         if verbose:
             print("Velocity units are m/s. Converting to km/s.")
         cube_vel = cube_vel/1000. #km/s
         cube_dv = cube_dv/1000. #km/s
-    elif 'km/s' == str.strip(cube_head['CUNIT3']):
+    elif 'km/s' == str.strip(cube_head['CUNIT3']) or 'KM/S' == str.strip(cube_head['CUNIT3']):
         if verbose:
             print("Velocity units are km/s.")
         pass
@@ -180,7 +180,7 @@ def read_fitscube(filename,need_beam=False,widths=False,verbose=False):
         if verbose:
             print("Velocity convention is optical.")
         pass
-    elif 'RAD' in str(cube_head['CTYPE3']) or 'rad' in str(cube_head['CTYPE3']):
+    elif 'RAD' in str(cube_head['CTYPE3']) or 'rad' in str(cube_head['CTYPE3']) or int(cube_head['VELREF']) > 256:
         if verbose:
             print("Velocity convention is radio. Converting to optical.")
         cube_vel = v_opt(cube_vel)
@@ -194,6 +194,9 @@ def read_fitscube(filename,need_beam=False,widths=False,verbose=False):
     beam_factor = (numpy.pi*bmaj*bmin/(pixel**2.))/(4.*numpy.log(2.))
     
     cube_fits.close()
+    
+    if mask:
+        cube = numpy.where(cube > 0, 1, 0)
     
     if need_beam and widths:
         return cube,cube_ra,cube_dec,cube_vel,bmaj,bmin,pa,beam_factor,cube_dx,cube_dy,cube_dv
