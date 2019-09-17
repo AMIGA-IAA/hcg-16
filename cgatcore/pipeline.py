@@ -60,11 +60,11 @@ def imaging(infile, outfile):
     2> imaging.stderr'''
     P.run(statement)
 
-@split(imaging, ['3.5s.dil', '5.0s.nodil'])
+@split(imaging, ['HCG16_CD_rob2_MS.3.5s.dil', 'HCG16_CD_rob2_MS.5.0s.nodil', 'HIPASS_cube_params'])
 def masking(infile, outfiles):
     for mask in outfiles:
         statement = '''/usr/bin/time -o masking.{}.time -v
-        sudo docker run -v "$(pwd)":/data -t amigahub/sofia:v1.0 hcg-16-master/sofia/HCG16_CD_rob2_MS.{}.session
+        sudo docker run -v "$(pwd)":/data -t amigahub/sofia:v1.0 hcg-16-master/sofia/{}.session
         1> masking.{}.stdout
         2> masking.{}.stderr'''.format(mask, mask, mask, mask, mask)
         P.run(statement)
