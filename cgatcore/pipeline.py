@@ -90,6 +90,7 @@ def plotting(infiles, outfile):
     statement = '''/usr/bin/time -o plotting.time -v
     cp hcg-16-master/plot_scripts/*.ipynb . &&
     cp hcg-16-master/plot_scripts/*.py . &&
+    cp hcg-16-master/sofia/HIPASS_cube_params.session . &&
     for n in `ls *.ipynb`; do jupyter nbconvert --to python $n; newname=$(echo $n | sed 's/.ipynb/.py/g'); python $newname; done &&
     touch plotting.done
     '''
