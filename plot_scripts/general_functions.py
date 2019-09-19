@@ -25,6 +25,28 @@ v_hcg16d = 3874. #km/s
 v_hcg16n = 4045. #km/s #NGC 848
 v_hcg16p = 3972. #km/s #PGC 8210
 
+#Redshifts and velocity ranges from optical rotation curves
+#Mendes de Oliveira+1998
+m98_v_hcg16a_cen = 4040.
+m98_v_hcg16a_min = -163.
+m98_v_hcg16a_max = 174.
+m98_v_hcg16b_cen = 3905.
+m98_v_hcg16b_min = -77.
+m98_v_hcg16b_max = 183.
+m98_v_hcg16c_cen = 3850.
+m98_v_hcg16c_min = -220.
+m98_v_hcg16c_max = 225.
+m98_v_hcg16d_cen = 3845.
+m98_v_hcg16d_min = -78.
+m98_v_hcg16d_max = 76.
+#Rubin+1991
+r91_v_hcg16a_cen = 4052.
+r91_vmax_hcg16a = 250.
+r91_v_hcg16b_cen = 3837.
+r91_v_hcg16c_cen = 3858.
+r91_v_hcg16d_cen = 3864.
+r91_vmax_hcg16d = 70.
+
 #Positions of HCG 16 members
 ra_hcg16a = 32.352519 
 ra_hcg16b = 32.336845

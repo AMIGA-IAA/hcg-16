@@ -19,7 +19,7 @@ plt.rcParams['lines.linewidth'] = 1
 plt.rcParams['axes.linewidth'] = 1
 
 #Set to true to save pdf versions of figures
-save_figs = False
+save_figs = True
 
 
 # The files used to make the following plots are:
@@ -117,7 +117,7 @@ hi_data[['Flux [Jy km/s]','Mean Vel. [km/s]','Vel. Disp. [km/s]','log MHI [Msol]
 fig,axarr = plt.subplots(nrows=3, ncols=2, sharex=True, figsize=(2.*8.27,3*4.))
 
 vel_min = 3600.
-vel_max = 4300.
+vel_max = 4350.
 
 plt_vel = numpy.zeros(len(vel[0])+2)
 plt_spec = numpy.zeros(len(vel[0])+2)
@@ -132,6 +132,12 @@ ax.set_ylabel('Flux Density [mJy]')
 ax.set_xlim(vel_min,vel_max)
 ax.set_ylim(0.,11.)
 ax.axvline(v_hcg16a,ls='--',c='k')
+ax.axvline(m98_v_hcg16a_cen,ls='dashdot',c='b')
+ax.axvline(m98_v_hcg16a_cen+m98_v_hcg16a_max,ls='dotted',c='b')
+ax.axvline(m98_v_hcg16a_cen+m98_v_hcg16a_min,ls='dotted',c='b')
+ax.axvline(r91_v_hcg16a_cen,ls='dashdot',c='r')
+ax.axvline(r91_v_hcg16a_cen-r91_vmax_hcg16a,ls='dotted',c='r')
+ax.axvline(r91_v_hcg16a_cen+r91_vmax_hcg16a,ls='dotted',c='r')
 ax.annotate('HCG 16a',xy=[0.05,0.9],xycoords='axes fraction')
 
 plt_vel = numpy.zeros(len(vel[1])+2)
@@ -147,6 +153,10 @@ ax.set_ylabel('Flux Density [mJy]')
 ax.set_xlim(vel_min,vel_max)
 ax.set_ylim(0.,11.)
 ax.axvline(v_hcg16b,ls='--',c='k')
+ax.axvline(m98_v_hcg16b_cen,ls='dashdot',c='b')
+ax.axvline(m98_v_hcg16b_cen+m98_v_hcg16b_max,ls='dotted',c='b')
+ax.axvline(m98_v_hcg16b_cen+m98_v_hcg16b_min,ls='dotted',c='b')
+ax.axvline(r91_v_hcg16b_cen,ls='dashdot',c='r')
 ax.annotate('HCG 16b',xy=[0.05,0.9],xycoords='axes fraction')
 
 plt_vel = numpy.zeros(len(vel[5])+2)
@@ -178,6 +188,10 @@ ax.set_ylabel('Flux Density [mJy]')
 ax.set_xlim(vel_min,vel_max)
 ax.set_ylim(0.,60.)
 ax.axvline(v_hcg16c,ls='--',c='k')
+ax.axvline(m98_v_hcg16c_cen,ls='dashdot',c='b')
+ax.axvline(m98_v_hcg16c_cen+m98_v_hcg16c_max,ls='dotted',c='b')
+ax.axvline(m98_v_hcg16c_cen+m98_v_hcg16c_min,ls='dotted',c='b')
+ax.axvline(r91_v_hcg16c_cen,ls='dashdot',c='r')
 ax.annotate('HCG 16c',xy=[0.05,0.9],xycoords='axes fraction')
 
 plt_vel = numpy.zeros(len(vel[3])+2)
@@ -193,6 +207,11 @@ ax.set_ylabel('Flux Density [mJy]')
 ax.set_xlim(vel_min,vel_max)
 ax.set_ylim(0.,60.)
 ax.axvline(v_hcg16d,ls='--',c='k')
+ax.axvline(m98_v_hcg16d_cen+m98_v_hcg16d_max,ls='dotted',c='b')
+ax.axvline(m98_v_hcg16d_cen+m98_v_hcg16d_min,ls='dotted',c='b')
+ax.axvline(r91_v_hcg16d_cen,ls='dashdot',c='r')
+ax.axvline(r91_v_hcg16d_cen-r91_vmax_hcg16d,ls='dotted',c='r')
+ax.axvline(r91_v_hcg16d_cen+r91_vmax_hcg16d,ls='dotted',c='r')
 ax.annotate('HCG 16d',xy=[0.05,0.9],xycoords='axes fraction')
 
 plt_vel = numpy.zeros(len(vel[4])+2)
