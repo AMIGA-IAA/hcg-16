@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
 cd plot_scripts/
-wget https://b2share.eudat.eu/api/files/a1307731-8888-4bc0-aec4-5518d07b9b9d/HCG16_final_data.tar.gz
+wget https://b2share.eudat.eu/api/files/878dbee0-01bf-4b85-8ed3-71818cd223bf/HCG16_final_data.tar.gz
 tar -xzf HCG16_final_data.tar.gz
