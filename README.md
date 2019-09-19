@@ -37,4 +37,4 @@ be patient.
 
 # Final data and visualisation
 
-If you are only interested in downloading the final reduced data cubes these are located at stored on the [EUDAT B2SHARE](https://b2share.eudat.eu/records/7c8655b6f25348358b4e6fece7ab6016) service (DOI: 10.23728/b2share.7c8655b6f25348358b4e6fece7ab6016). There is also a 3D visualisation of the HI data cube hosted on the [AMIGA webpage](http://amiga.iaa.es/FCKeditor/UserFiles/X3D/HCG16/HCG16.html).
+If you are only interested in downloading the final reduced data cubes these are located at stored on the [EUDAT B2SHARE](https://b2share.eudat.eu/records/a69a7b2dcc22449e8734552dde4d3906) service (DOI: 10.23728/b2share.a69a7b2dcc22449e8734552dde4d3906). There is also a 3D visualisation of the HI data cube hosted on the [AMIGA webpage](http://amiga.iaa.es/FCKeditor/UserFiles/X3D/HCG16/HCG16.html).
