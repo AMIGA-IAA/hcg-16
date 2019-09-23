@@ -116,7 +116,7 @@ hi_data[['Flux [Jy km/s]','Mean Vel. [km/s]','Vel. Disp. [km/s]','log MHI [Msol]
 
 fig,axarr = plt.subplots(nrows=3, ncols=2, sharex=True, figsize=(2.*8.27,3*4.))
 
-vel_min = 3600.
+vel_min = 3500.
 vel_max = 4350.
 
 plt_vel = numpy.zeros(len(vel[0])+2)
