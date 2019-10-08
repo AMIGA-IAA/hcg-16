@@ -67,7 +67,7 @@ f.grid.set_color('black')
 
 #Save
 if save_figs:
-    plt.savefig('Fig16-NW_clump_mom0_cont.pdf')
+    plt.savefig('Fig15-NW_clump_mom0_cont.pdf')
 
 
 # In[ ]:
@@ -100,7 +100,7 @@ f.beam.set_corner('bottom right')
 
 #Save
 if save_figs:
-    plt.savefig('Fig16-NW_clump_mom1.pdf')
+    plt.savefig('Fig15-NW_clump_mom1.pdf')
 
 
 # In[ ]:
@@ -125,7 +125,7 @@ f.grid.set_color('black')
 
 #Save
 if save_figs:
-    plt.savefig('Fig16-E_clump_mom0_cont.pdf')
+    plt.savefig('Fig15-E_clump_mom0_cont.pdf')
 
 
 # In[ ]:
@@ -158,7 +158,7 @@ f.beam.set_corner('bottom right')
 
 #Save
 if save_figs:
-    plt.savefig('Fig16-E_clump_mom1.pdf')
+    plt.savefig('Fig15-E_clump_mom1.pdf')
 
 
 # In[ ]:
@@ -183,7 +183,7 @@ f.grid.set_color('black')
 
 #Save
 if save_figs:
-    plt.savefig('Fig16-S_clump_mom0_cont.pdf')
+    plt.savefig('Fig15-S_clump_mom0_cont.pdf')
 
 
 # In[ ]:
@@ -216,5 +216,5 @@ f.beam.set_corner('bottom right')
 
 #Save
 if save_figs:
-    plt.savefig('Fig16-S_clump_mom1.pdf')
+    plt.savefig('Fig15-S_clump_mom1.pdf')
 
