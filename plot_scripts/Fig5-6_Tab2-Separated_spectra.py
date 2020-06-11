@@ -107,6 +107,7 @@ hi_data = pandas.DataFrame(hi_data)
 hi_data = hi_data.set_index('Object')
 
 hi_data[['Flux [Jy km/s]','Mean Vel. [km/s]','Vel. Disp. [km/s]','log MHI [Msol]','HI Def.','HI Def. Error']]
+hi_data[['Flux [Jy km/s]','Mean Vel. [km/s]','Vel. Disp. [km/s]','log MHI [Msol]','HI Def.','HI Def. Error']].to_csv('Tab2-HCG16_galaxy_HI_props.csv',index=True)
 
 
 # Plot the separated spectra as in Figures 4 and 5 of the paper.

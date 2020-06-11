@@ -57,6 +57,8 @@ manifest:
     comment: Compare to figure 15 (top-right) of the paper.
   - file: Fig15-S_clump_mom1.pdf
     comment: Compare to figure 15 (bottom-right) of the paper.
+  - file: Tab2-HCG16_galaxy_HI_props.csv
+    comment: Compare to values in table 2 of the paper.
 
 paper:
   title: "Evolution of compact groups from intermediate to final stages: A case study of the H I content of HCG 16"
