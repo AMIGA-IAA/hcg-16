@@ -1,0 +1,93 @@
+version: https://codecheck.org.uk/spec/config/1.0/
+
+manifest:
+  - file: HCG16_CD_rob2_MS.pbcor.fits
+    comment: The final data cube of the neutral hydrogen emission in HCG 16. Can be compared with the equivalent file stored at https://b2share.eudat.eu/records/a69a7b2dcc22449e8734552dde4d3906.
+  - file: HCG16_CD_rob0_MS.pbcor.fits
+    comment: As above, but imaged at a higher resolution and lower sensitivity. Can be compared with the equivalent file stored at https://b2share.eudat.eu/records/a69a7b2dcc22449e8734552dde4d3906.
+  - file: HCG16_CD_rob2_MS_mask.fits
+    comment: A mask that encompasses all the emission of the group. Generated with the SoFiA software (https://github.com/SoFiA-Admin/SoFiA). Can be compared with the equivalent file stored at https://b2share.eudat.eu/records/a69a7b2dcc22449e8734552dde4d3906.
+  - file: Fig1-HCG16_DECaLS_image.pdf
+    comment: Compare to figure 1 of the paper.
+  - file: Fig2-HCG16_mom0+DECaLS_overlay.pdf
+    comment: Compare to figure 2 of the paper.
+  - file: Fig3-HCG16_mom1.pdf
+    comment: Compare to figure 3 of the paper.
+  - file: Fig4-HCG16_spectrum.pdf
+    comment: Compare to figure 4 of the paper.
+  - file: Fig5-HCG16_galaxy_spectra_indv.pdf
+    comment: Compare to figure 5 of the paper.
+  - file: Fig6-HCG16_tidal_spectra_indv.pdf
+    comment: Compare to figure 6 of the paper.
+  - file: Fig8-HCG16a_mom0.pdf
+    comment: Compare to figure 8 (left) of the paper.
+  - file: Fig8-HCG16a_mom1_cont.pdf
+    comment: Compare to figure 8 (right) of the paper.
+  - file: Fig9-HCG16b_mom0.pdf
+    comment: Compare to figure 9 (left) of the paper.
+  - file: Fig9-HCG16b_mom1_cont.pdf
+    comment: Compare to figure 9 (right) of the paper.
+  - file: Fig10-HCG16c_mom0.pdf
+    comment: Compare to figure 10 (left) of the paper.
+  - file: Fig10-HCG16c_mom1_cont.pdf
+    comment: Compare to figure 10 (right) of the paper.
+  - file: Fig11-HCG16d_mom0.pdf
+    comment: Compare to figure 11 (left) of the paper.
+  - file: Fig11-HCG16d_noabs_mom1_cont.pdf
+    comment: Compare to figure 11 (right) of the paper.
+  - file: Fig12-HCG16d_absorption_spec.pdf
+    comment: Compare to figure 12 of the paper.
+  - file: Fig13-NGC848_mom0.pdf
+    comment: Compare to figure 13 (left) of the paper.
+  - file: Fig13-NGC848_mom1_cont.pdf
+    comment: Compare to figure 13 (right) of the paper.
+  - file: Fig14-PGC8210_mom0.pdf
+    comment: Compare to figure 14 (left) of the paper.
+  - file: Fig14-PGC8210_mom1_cont.pdf
+    comment: Compare to figure 14 (right) of the paper.
+  - file: Fig15-NW_clump_mom0_cont.pdf
+    comment: Compare to figure 15 (top-left) of the paper.
+  - file: Fig15-NW_clump_mom1.pdf
+    comment: Compare to figure 15 (bottom-left) of the paper.
+  - file: Fig15-E_clump_mom0_cont.pdf
+    comment: Compare to figure 15 (top-centre) of the paper.
+  - file: Fig15-E_clump_mom1.pdf
+    comment: Compare to figure 15 (bottom-centre) of the paper.
+  - file: Fig15-S_clump_mom0_cont.pdf
+    comment: Compare to figure 15 (top-right) of the paper.
+  - file: Fig15-S_clump_mom1.pdf
+    comment: Compare to figure 15 (bottom-right) of the paper.
+
+paper:
+  title: "Evolution of compact groups from intermediate to final stages: A case study of the H I content of HCG 16"
+  authors:
+    - name: M. G. Jones
+      ORCID: 0000-0002-5434-4904
+    - name: L. Verdes-Montenegro
+      ORCID: 0000-0003-0156-6180
+    - name: A. Damas-Segovia
+      ORCID: 0000-0002-5747-8510
+    - name: S. Borthakur
+    - name: M. Yun
+    - name: A. del Olmo
+      ORCID: 0000-0003-2055-9816
+    - name: J. Perea
+      ORCID: 0000-0002-5640-9791
+    - name: J. Román
+      ORCID: 0000-0002-3849-3467
+    - name: S. Luna
+      ORCID: 0000-0002-3143-4798
+    - name: D. Lopez Gutierrez
+      ORCID: 0000-0002-2279-2753
+    - name: B. Williams
+    - name: F. P. A. Vogt
+      ORCID: 0000-0002-9665-2788
+    - name: J. Garrido
+      ORCID: 0000-0002-6696-4772
+    - name: S. Sanchez
+      ORCID: 0000-0002-7510-7633
+    - name: J. Cannon
+      ORCID: 0000-0002-1821-7019
+    - name: P. Ramírez-Morata
+      ORCID: 0000-0001-5874-6057
+  reference: https://doi.org/10.1051/0004-6361/201936349
