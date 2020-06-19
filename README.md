@@ -2,7 +2,9 @@
 
 # 1) Pipeline for HCG-16 Project
 
-Work in progress. Here are the steps to run the pipeline:
+This repository hosts a pipeline to reproduce the data reduction and analysis of [Jones et al. 2019](https://ui.adsabs.harvard.edu/abs/2019A%26A...632A..78J/abstract).
+
+Here are the steps to run the pipeline:
 ```
 curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/run.sh
 bash run.sh
