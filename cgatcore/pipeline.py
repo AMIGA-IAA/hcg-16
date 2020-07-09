@@ -46,7 +46,7 @@ def prepare_data(infile, outfile):
 @follows(prepare_code, prepare_data)
 @merge('AW*.xp1', 'calibration.log')
 def calibration(infiles, outfile):
-    statement = '''/usr/bin/time -o calibration.time -v
+    statement = '''\\time -o calibration.time -v
     sudo docker run -v "$(pwd)":/data -t amigahub/casa:v1.0 --nogui --logfile calibration.log -c hcg-16-master/casa/calibration_flag.py
     1> calibration.stdout
     2> calibration.stderr'''
@@ -54,7 +54,7 @@ def calibration(infiles, outfile):
 
 @transform(calibration, suffix('calibration.log'), 'imaging.log')
 def imaging(infile, outfile):
-    statement = '''/usr/bin/time -o imaging.time -v
+    statement = '''\\time -o imaging.time -v
     sudo docker run -v "$(pwd)":/data -t amigahub/casa:v1.0 --nogui --logfile imaging.log -c hcg-16-master/casa/imaging.py
     1> imaging.stdout
     2> imaging.stderr'''
@@ -63,7 +63,7 @@ def imaging(infile, outfile):
 @split(imaging, ['HCG16_CD_rob2_MS.3.5s.dil', 'HCG16_CD_rob2_MS.5.0s.nodil', 'HIPASS_cube_params'])
 def masking(infile, outfiles):
     for mask in outfiles:
-        statement = '''/usr/bin/time -o masking.{}.time -v
+        statement = '''\\time -o masking.{}.time -v
         sudo docker run -v "$(pwd)":/data -t amigahub/sofia:v1.0 hcg-16-master/sofia/{}.session
         1> masking.{}.stdout
         2> masking.{}.stderr'''.format(mask, mask, mask, mask, mask)
@@ -87,7 +87,7 @@ def get_decals_fits(outfile):
 @follows(imaging, masking, get_decals_jpeg, get_decals_fits)
 @merge(imaging, 'plotting.done')
 def plotting(infiles, outfile):
-    statement = '''/usr/bin/time -o plotting.time -v
+    statement = '''\\time -o plotting.time -v
     cp hcg-16-master/plot_scripts/*.ipynb . &&
     cp hcg-16-master/plot_scripts/*.py . &&
     cp hcg-16-master/sofia/HIPASS_cube_params.session . &&
