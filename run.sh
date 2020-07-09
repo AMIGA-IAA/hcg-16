@@ -66,10 +66,10 @@ else
         log " Conda  downloaded. "
     else
         log " Downloading conda... "
-        curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh >& /dev/null
+	curl -o Miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh >& /dev/null
     fi
     log " Install conda... "
-    bash Miniconda3-latest-Linux-x86_64.sh -b -p conda-install >& /dev/null
+    bash Miniconda.sh -b -p conda-install >& /dev/null
 fi
 
 if [[ "${CONDA_EXE}" ]] ; then
@@ -89,7 +89,7 @@ else
     curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/environment.yml
 fi
 
-EXISTS_ENV=$(conda env list | grep hcg-16) || $(echo "")
+EXISTS_ENV=$(conda env list | grep "hcg-16 ") || $(echo "")
 
 if [[ "${CONDA_DEFAULT_ENV}" == "hcg-16" ]] ; then
     log " hcg-16 environment loaded. "
