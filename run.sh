@@ -59,25 +59,25 @@ function report_error() {
 
 ### Install/activate conda
 
-if [[ -d conda-install ]] ; then
-    log " Conda installed. "
-else
-    if [[ -r Miniconda3-latest-Linux-x86_64.sh ]] ; then
-        log " Conda  downloaded. "
-    else
-        log " Downloading conda... "
-	curl -o Miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh >& /dev/null
-    fi
-    log " Install conda... "
-    bash Miniconda.sh -b -p conda-install >& /dev/null
-fi
-
 if [[ "${CONDA_EXE}" ]] ; then
     log " Conda activated. "
 else
+    ### Conda not activated, but has it been installed by this script?
+    if [[ -d conda-install ]] ; then
+        log " Conda installed. "
+    else
+        ### At this point we need to install miniconda
+        if [[ -r Miniconda.sh ]] ; then
+            log " Conda  downloaded. "
+        else
+            log " Downloading conda... "
+            curl -o Miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh >& /dev/null
+        fi
+        log " Install conda... "
+        bash Miniconda.sh -b -p conda-install >& /dev/null
+    fi
     log " Activate conda... "
     source conda-install/etc/profile.d/conda.sh && \
-    conda update --all --yes
 fi
 
 ### Install conda environment
