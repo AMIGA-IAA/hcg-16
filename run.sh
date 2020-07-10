@@ -59,26 +59,22 @@ function report_error() {
 
 ### Install/activate conda
 
-if [[ "${CONDA_EXE}" ]] ; then
-    log " Conda activated. "
+# Check if pipeline has already installed conda
+if [[ -r conda-install/etc/profile.d/conda.sh ]] ; then
+    log " Conda already installed. "
 else
-    ### Conda not activated, but has it been installed by this script?
-    if [[ -d conda-install ]] ; then
-        log " Conda installed. "
+    ### At this point we need to install miniconda
+    if [[ -r Miniconda.sh ]] ; then
+        log " Conda already downloaded. "
     else
-        ### At this point we need to install miniconda
-        if [[ -r Miniconda.sh ]] ; then
-            log " Conda  downloaded. "
-        else
-            log " Downloading conda... "
-            curl -o Miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh >& /dev/null
-        fi
-        log " Install conda... "
-        bash Miniconda.sh -b -p conda-install >& /dev/null
+        log " Downloading conda... "
+        curl -o Miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh >& /dev/null
     fi
-    log " Activate conda... "
-    source conda-install/etc/profile.d/conda.sh && \
+    log " Install conda... "
+    bash Miniconda.sh -b -p conda-install >& /dev/null
 fi
+log " Activate conda... "
+source conda-install/etc/profile.d/conda.sh
 
 ### Install conda environment
 
@@ -124,5 +120,5 @@ if [[ -r pipeline.time ]] ; then
     log " Pipeline finished. "
 else
     log " Run pipeline... "
-    python pipeline.py make plotting --local --timeit=pipeline.time
+    python pipeline.py make prepare_code --local --timeit=pipeline.time
 fi
