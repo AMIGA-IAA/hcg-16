@@ -120,5 +120,5 @@ if [[ -r pipeline.time ]] ; then
     log " Pipeline finished. "
 else
     log " Run pipeline... "
-    python pipeline.py make prepare_code --local --timeit=pipeline.time
+    python pipeline.py make plotting --local --timeit=pipeline.time
 fi
