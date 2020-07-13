@@ -59,26 +59,22 @@ function report_error() {
 
 ### Install/activate conda
 
-if [[ -d conda-install ]] ; then
-    log " Conda installed. "
+# Check if pipeline has already installed conda
+if [[ -r conda-install/etc/profile.d/conda.sh ]] ; then
+    log " Conda already installed. "
 else
-    if [[ -r Miniconda3-latest-Linux-x86_64.sh ]] ; then
-        log " Conda  downloaded. "
+    ### At this point we need to install miniconda
+    if [[ -r Miniconda.sh ]] ; then
+        log " Conda already downloaded. "
     else
         log " Downloading conda... "
-        curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh >& /dev/null
+        curl -o Miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh >& /dev/null
     fi
     log " Install conda... "
-    bash Miniconda3-latest-Linux-x86_64.sh -b -p conda-install >& /dev/null
+    bash Miniconda.sh -b -p conda-install >& /dev/null
 fi
-
-if [[ "${CONDA_EXE}" ]] ; then
-    log " Conda activated. "
-else
-    log " Activate conda... "
-    source conda-install/etc/profile.d/conda.sh && \
-    conda update --all --yes
-fi
+log " Activate conda... "
+source conda-install/etc/profile.d/conda.sh
 
 ### Install conda environment
 
@@ -89,7 +85,7 @@ else
     curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/environment.yml
 fi
 
-EXISTS_ENV=$(conda env list | grep hcg-16) || $(echo "")
+EXISTS_ENV=$(conda env list | grep "hcg-16 ") || $(echo "")
 
 if [[ "${CONDA_DEFAULT_ENV}" == "hcg-16" ]] ; then
     log " hcg-16 environment loaded. "
