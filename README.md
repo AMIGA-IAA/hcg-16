@@ -6,6 +6,11 @@ This repository hosts a pipeline to reproduce the data reduction and analysis of
 
 Here are the steps to run the pipeline:
 ```
+# First make sure you create and go to a new working directory:
+mkdir pipeline-run
+cd pipeline-run
+
+# Then execute:
 curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/run.sh
 bash run.sh
 ```
