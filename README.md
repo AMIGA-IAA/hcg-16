@@ -5,15 +5,18 @@
 This repository hosts a pipeline to reproduce the data reduction and analysis of [Jones et al. 2019](https://ui.adsabs.harvard.edu/abs/2019A%26A...632A..78J/abstract).
 
 Here are the steps to run the pipeline:
+
+First make sure you create and go to a new working directory:
 ```
-# First make sure you create and go to a new working directory:
 mkdir pipeline-run
 cd pipeline-run
-
-# Then execute:
+```
+Then execute:
+```
 curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/run.sh
 bash run.sh
 ```
+
 [run.sh](https://github.com/AMIGA-IAA/hcg-16/blob/master/run.sh) will do automatically the following steps:
 * download and install [conda](https://docs.conda.io/en/latest/)
 * download and install [cgatcore](https://github.com/cgat-developers/cgat-core/blob/master/README.rst), a workflow management system
@@ -45,18 +48,29 @@ be patient.
 
 # 3) Plots for HCG-16 Project in local environment
 
-Alternatively, you may regenerate the plots by running the notebooks in your machine. First, you will need to clone the repository, create the conda environment to set up the software environment with all the dependencies: 
+Alternatively, you may regenerate the plots by running the notebooks in your machine. 
 
+First, you will need to clone the repository:
 ```
 git clone https://github.com/AMIGA-IAA/hcg-16.git
-conda update conda
+cd hcg-16
+```
+Download and install conda (if conda is already available on your system you may skip this step):
+```
+curl -o Miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh
+bash Miniconda.sh -b -p conda-install
+source conda-install/etc/profile.d/conda.sh
+```
+Create and activate the conda environment:
+```
 conda env create --file environment.yml 
 conda activate hcg-16
 ```
 
-You will also need to download the data files that are used in the notebooks by running the following commands in the plot_scripts folder:
+You will also need to download the data files that are used in the notebooks by running the following commands:
 
 ```
+cd plot_scripts
 wget https://b2share.eudat.eu/api/files/878dbee0-01bf-4b85-8ed3-71818cd223bf/HCG16_final_data.tar.gz
 tar -xzf HCG16_final_data.tar.gz
 ```
