@@ -21,7 +21,7 @@ bash run.sh
 * download and install [conda](https://docs.conda.io/en/latest/)
 * download and install [cgatcore](https://github.com/cgat-developers/cgat-core/blob/master/README.rst), a workflow management system
 * construct a conda python environment with which to run the code
-* download the source code
+* download this repository with the source code of the analysis
 * download the [input data](https://b2share.eudat.eu/records/f8fcd84bcd454bdc8ea0ec2d69bdfe9a)
 * run the [pipeline](https://github.com/AMIGA-IAA/hcg-16/blob/master/cgatcore/pipeline.py)
 
