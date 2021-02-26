@@ -76,6 +76,18 @@ fi
 log " Activate conda... "
 source conda-install/etc/profile.d/conda.sh
 
+### Use mamba to speed up dependency resolution
+### https://github.com/mamba-org/mamba
+
+EXISTS_MAMBA=$(which mamba) || $(echo "")
+
+if [[ -z "${EXISTS_MAMBA}" ]] ; then
+    log " Install mamba... "
+    conda install mamba -c conda-forge --yes
+else
+    log " mamba already available. "
+fi
+
 ### Install conda environment
 
 if [[ -r environment.yml ]] ; then
@@ -94,7 +106,7 @@ elif [[ "${EXISTS_ENV}" != "" ]] ; then
     conda activate hcg-16
 else
     log " Install hcg-16 environment... "
-    conda env create --file environment.yml && \
+    mamba env create --file environment.yml && \
     conda activate hcg-16
 fi
 
