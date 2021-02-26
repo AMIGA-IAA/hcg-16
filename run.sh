@@ -123,11 +123,11 @@ if [[ -z "${UDOCKER_AVAIL}" ]] ; then
     BIN_DIR=$(dirname ${BIN_PYTHON})
     # get udocker release 1.1.4, which we know works
     curl -o ${BIN_DIR}/udocker https://raw.githubusercontent.com/indigo-dc/udocker/bcdb02c01480f32364481ab637201619405523d8/udocker.py
+    # configure run permissions
+    chmod +x ${BIN_DIR}/udocker
 else
     log " udocker is already installed."
 fi
-
-exit 0
 
 ### Download pipeline
 
