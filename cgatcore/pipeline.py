@@ -11,7 +11,7 @@ PARAMS = P.get_parameters("pipeline.yml")
 
 @originate('dependency_check.done')
 def dependency_check(outfile):
-    deps = ["wget", "unzip", "tar", "docker", "time"]
+    deps = ["wget", "unzip", "tar", "udocker", "time"]
     for cmd in deps:
         if shutil.which(cmd) is None:
             raise EnvironmentError("Required dependency \"{}\" not found".format(cmd))
@@ -47,7 +47,7 @@ def prepare_data(infile, outfile):
 @merge('AW*.xp1', 'calibration.log')
 def calibration(infiles, outfile):
     statement = '''\\time -o calibration.time -v
-    sudo docker run -v "$(pwd)":/data -t amigahub/casa:v1.0 --nogui --logfile calibration.log -c hcg-16-master/casa/calibration_flag.py
+    udocker run -v "$(pwd)":/data -t amigahub/casa:v1.0 --nogui --logfile calibration.log -c hcg-16-master/casa/calibration_flag.py
     1> calibration.stdout
     2> calibration.stderr'''
     P.run(statement)
@@ -55,7 +55,7 @@ def calibration(infiles, outfile):
 @transform(calibration, suffix('calibration.log'), 'imaging.log')
 def imaging(infile, outfile):
     statement = '''\\time -o imaging.time -v
-    sudo docker run -v "$(pwd)":/data -t amigahub/casa:v1.0 --nogui --logfile imaging.log -c hcg-16-master/casa/imaging.py
+    udocker run -v "$(pwd)":/data -t amigahub/casa:v1.0 --nogui --logfile imaging.log -c hcg-16-master/casa/imaging.py
     1> imaging.stdout
     2> imaging.stderr'''
     P.run(statement)
@@ -64,7 +64,7 @@ def imaging(infile, outfile):
 def masking(infile, outfiles):
     for mask in outfiles:
         statement = '''\\time -o masking.{}.time -v
-        sudo docker run -v "$(pwd)":/data -t amigahub/sofia:v1.0 hcg-16-master/sofia/{}.session
+        udocker run -v "$(pwd)":/data -t amigahub/sofia:v1.0 hcg-16-master/sofia/{}.session
         1> masking.{}.stdout
         2> masking.{}.stderr'''.format(mask, mask, mask, mask, mask)
         P.run(statement)
