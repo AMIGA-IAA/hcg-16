@@ -79,13 +79,13 @@ source conda-install/etc/profile.d/conda.sh
 ### Use mamba to speed up dependency resolution
 ### https://github.com/mamba-org/mamba
 
-MAMBA_EXISTS=$(which mamba) || $(echo "")
+EXISTS_MAMBA=$(which mamba) || $(echo "")
 
-if [[ -z "${MAMBA_EXISTS}" ]] ; then
+if [[ -z "${EXISTS_MAMBA}" ]] ; then
     log " Install mamba... "
     conda install mamba -c conda-forge --yes
 else
-    log " Mamba already available. "
+    log " mamba already available. "
 fi
 
 ### Install conda environment
