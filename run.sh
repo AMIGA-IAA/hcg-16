@@ -98,6 +98,25 @@ else
     conda activate hcg-16
 fi
 
+### udocker for python3 has not been released yet
+### https://github.com/indigo-dc/udocker/releases/tag/devel3_1.2.7
+### here are steps to install it
+
+UDOCKER_AVAIL=$(which udocker) || $(echo "")
+
+if [[ -z "${UDOCKER_AVAIL}" ]] ; then
+    log " udocker is not installed... installing it now"
+    # get /bin path for conda env
+    BIN_PYTHON=$(which python)
+    BIN_DIR=$(dirname ${BIN_PYTHON})
+    # get udocker release 1.1.4, which we know works
+    curl -o ${BIN_DIR}/udocker https://raw.githubusercontent.com/indigo-dc/udocker/bcdb02c01480f32364481ab637201619405523d8/udocker.py
+else
+    log " udocker is already installed."
+fi
+
+exit 0
+
 ### Download pipeline
 
 if [[ -r pipeline.py ]] ; then
