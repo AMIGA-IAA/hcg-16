@@ -57,7 +57,34 @@ function report_error() {
     exit 1
 }
 
-### Install/activate conda
+# function to deactivate inherited conda installation
+function deactivate_conda() {
+
+  PATH_LIST=$(echo $PATH | tr ':' ' ')
+  NEW_PATH=/usr/local/bin
+
+  for e in `echo $PATH_LIST`;
+  do
+    if [[ "$e" != *condabin ]] && [[ "$e" != "/usr/local/bin" ]] ; then
+      NEW_PATH=$NEW_PATH:$e
+    fi
+  done
+
+  echo $PATH
+  echo $NEW_PATH
+}
+
+### Deactivate inherited conda from existing environment
+
+EXISTS_CONDA=$(which conda) || $(echo "")
+
+if [[ "${EXISTS_CONDA}" ]] ; then
+    log " Install deactivate inherited conda... "
+    conda deactivate
+    deactivate_conda
+fi
+
+### Install/activate specific conda for this project
 
 # Check if pipeline has already installed conda
 if [[ -r conda-install/etc/profile.d/conda.sh ]] ; then
