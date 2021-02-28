@@ -34,9 +34,8 @@ At present it is advised that you move or delete any output files before re-runn
 won't be overwritten by default and may cause the pipeline to crash or not generate the desired output.
 
 ## Pre-requisites
-Please make sure you have `docker` installed on your computer before running `run.sh`. [Here](https://docs.docker.com/install/)
-are instructions on how to install docker. For the pipeline to execute succesfully it will require approximately 10 GB of free
-space. Also be aware that `docker` requires sudo access and may request the password during some steps of the pipeline.
+For the pipeline to execute succesfully it will require approximately 20 GB of free
+space. Approximately 10 GB will be used in the directory where the pipeline is executed, and about 9 GB will be used in `~/.udocker`.
 
 # 2) Plots for HCG-16 Project on the cloud
 
