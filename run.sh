@@ -60,29 +60,38 @@ function report_error() {
 # function to deactivate inherited conda installation
 function deactivate_conda() {
 
-  PATH_LIST=$(echo $PATH | tr ':' ' ')
-  NEW_PATH=/usr/local/bin
+  EXISTS_CONDA=$(which conda) || $(echo "")
 
-  for e in `echo $PATH_LIST`;
-  do
-    if [[ "$e" != *condabin ]] && [[ "$e" != "/usr/local/bin" ]] ; then
-      NEW_PATH=$NEW_PATH:$e
-    fi
-  done
+  if [[ "${EXISTS_CONDA}" ]] ; then
+    log " Deactivate inherited conda... "
 
-  echo $PATH
-  echo $NEW_PATH
+    CONDA_PATH=$(dirname $(dirname ${EXISTS_CONDA}))
+    PATH_LIST=$(echo ${PATH} | tr ':' ' ')
+    NEW_PATH=/usr/local/bin
+
+    # loop to get rid of conda paths in PATH
+    for e in $(echo ${PATH_LIST});
+    do
+      if [[ "${e}" != ${CONDA_PATH}* ]] && [[ "${e}" != "/usr/local/bin" ]] ; then
+        NEW_PATH=${NEW_PATH}:${e}
+      fi
+    done
+
+    # reconfig PATH
+    PATH=${NEW_PATH}
+
+    # loop to unset CONDA environment variables
+    for e in $(env | grep CONDA | sed 's/=.*//g');
+    do
+      unset ${e}
+    done
+
+  fi
 }
 
 ### Deactivate inherited conda from existing environment
 
-EXISTS_CONDA=$(which conda) || $(echo "")
-
-if [[ "${EXISTS_CONDA}" ]] ; then
-    log " Install deactivate inherited conda... "
-    conda deactivate
-    deactivate_conda
-fi
+deactivate_conda
 
 ### Install/activate specific conda for this project
 
