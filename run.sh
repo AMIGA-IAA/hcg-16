@@ -104,7 +104,7 @@ else
         log " Conda already downloaded. "
     else
         log " Downloading conda... "
-        curl -o Miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh >& /dev/null
+        curl -o Miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh >& /dev/null
     fi
     log " Install conda... "
     bash Miniconda.sh -b -p conda-install >& /dev/null
