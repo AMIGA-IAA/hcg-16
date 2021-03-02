@@ -57,7 +57,43 @@ function report_error() {
     exit 1
 }
 
-### Install/activate conda
+# function to deactivate inherited conda installation
+function deactivate_conda() {
+
+  EXISTS_CONDA=$(which conda) || $(echo "")
+
+  if [[ "${EXISTS_CONDA}" ]] ; then
+    log " Deactivate inherited conda... "
+
+    CONDA_PATH=$(dirname $(dirname ${EXISTS_CONDA}))
+    PATH_LIST=$(echo ${PATH} | tr ':' ' ')
+    NEW_PATH=/usr/local/bin
+
+    # loop to get rid of conda paths in PATH
+    for e in $(echo ${PATH_LIST});
+    do
+      if [[ "${e}" != ${CONDA_PATH}* ]] && [[ "${e}" != "/usr/local/bin" ]] ; then
+        NEW_PATH=${NEW_PATH}:${e}
+      fi
+    done
+
+    # reconfig PATH
+    PATH=${NEW_PATH}
+
+    # loop to unset CONDA environment variables
+    for e in $(env | grep CONDA | sed 's/=.*//g');
+    do
+      unset ${e}
+    done
+
+  fi
+}
+
+### Deactivate inherited conda from existing environment
+
+deactivate_conda
+
+### Install/activate specific conda for this project
 
 # Check if pipeline has already installed conda
 if [[ -r conda-install/etc/profile.d/conda.sh ]] ; then
@@ -68,7 +104,7 @@ else
         log " Conda already downloaded. "
     else
         log " Downloading conda... "
-        curl -o Miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh >& /dev/null
+        curl -o Miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh >& /dev/null
     fi
     log " Install conda... "
     bash Miniconda.sh -b -p conda-install >& /dev/null
