@@ -102,7 +102,7 @@ def cleanup(infile, outfile):
     hcg-16-master/ HCG16_source_mask/ AW*.xp1
     *gcal* *bcal* *.last *.log *.time *.stdout *.stderr *.done
     rflag* ctmp* delays.cal/ flux.cal/ gaincurve.cal/ *dil
-    *fits *ascii'''
+    *fits *ascii S* N* E_clump* PGC8210* H* cd_bridge* Fig* Tab2* general_functions.py __pycache__/'''
     P.run(statement)
 
 def main(argv=None):
