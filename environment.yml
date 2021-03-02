@@ -12,6 +12,8 @@ dependencies:
  - matplotlib 3.0.*
  - nbconvert 5.5.*
  - numpy 1.16.*
+ - unzip
+ - curl
  - pip
  - pip:
    - git+https://github.com/indigo-dc/udocker@devel3
