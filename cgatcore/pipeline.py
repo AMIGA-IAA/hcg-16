@@ -98,10 +98,11 @@ def plotting(infiles, outfile):
 
 @files(None, 'reset.log')
 def cleanup(infile, outfile):
-    statement = '''sudo rm -rf HCG16_C* HCG16_D*
+    statement = '''rm -rf HCG16_C* HCG16_D*
     hcg-16-master/ HCG16_source_mask/ AW*.xp1
     *gcal* *bcal* *.last *.log *.time *.stdout *.stderr *.done
-    rflag* ctmp* delays.cal/ flux.cal/ gaincurve.cal/ *dil'''
+    rflag* ctmp* delays.cal/ flux.cal/ gaincurve.cal/ *dil
+    *fits *ascii S* N* E_clump* PGC8210* H* cd_bridge* Fig* Tab2* general_functions.py __pycache__/'''
     P.run(statement)
 
 def main(argv=None):

@@ -93,6 +93,20 @@ function deactivate_conda() {
 
 deactivate_conda
 
+### curl or wget?
+
+DOWNLOAD_CMD="curl"
+
+EXISTS_CURL=$(which curl) || $(echo "")
+
+if [[ -z "${EXISTS_CURL}" ]] ; then
+    DOWNLOAD_CMD="wget"
+    DOWNLOAD_CMD_CONDA="wget -O"
+else
+    DOWNLOAD_CMD="curl -O"
+    DOWNLOAD_CMD_CONDA="curl -o"
+fi
+
 ### Install/activate specific conda for this project
 
 # Check if pipeline has already installed conda
@@ -104,7 +118,7 @@ else
         log " Conda already downloaded. "
     else
         log " Downloading conda... "
-        curl -o Miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh >& /dev/null
+        $DOWNLOAD_CMD_CONDA Miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh >& /dev/null
     fi
     log " Install conda... "
     bash Miniconda.sh -b -p conda-install >& /dev/null
@@ -130,7 +144,7 @@ if [[ -r environment.yml ]] ; then
     log " Conda environment downloaded. "
 else
     log " Download conda environment... "
-    curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/environment.yml
+    $DOWNLOAD_CMD https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/environment.yml
 fi
 
 EXISTS_ENV=$(conda env list | grep "hcg-16 ") || $(echo "")
@@ -152,14 +166,14 @@ if [[ -r pipeline.py ]] ; then
     log " Pipeline downloaded. "
 else
     log " Download pipeline... "
-    curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/cgatcore/pipeline.py
+    $DOWNLOAD_CMD https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/cgatcore/pipeline.py
 fi
 
 if [[ -r pipeline.yml ]] ; then
     log " Pipeline config downloaded. "
 else
     log " Download pipeline config... "
-    curl -O https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/cgatcore/pipeline.yml
+    $DOWNLOAD_CMD https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/cgatcore/pipeline.yml
 fi
 
 ### Run pipeline
