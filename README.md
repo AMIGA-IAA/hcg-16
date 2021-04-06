@@ -18,7 +18,7 @@ bash run.sh
 ```
 
 [run.sh](https://github.com/AMIGA-IAA/hcg-16/blob/master/run.sh) will do automatically the following steps:
-* download and install [conda](https://docs.conda.io/en/latest/)
+* download and install [miniconda](https://docs.conda.io/en/latest/miniconda.html)
 * download and install [cgatcore](https://github.com/cgat-developers/cgat-core/), a workflow management system
 * construct a [conda python environment](https://github.com/AMIGA-IAA/hcg-16/blob/master/environment.yml) with which to run the code
 * download this repository with the source code of the analysis
