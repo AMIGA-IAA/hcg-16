@@ -16,4 +16,4 @@ dependencies:
  - curl
  - pip
  - pip:
-   - git+https://github.com/indigo-dc/udocker@devel3
+   - udocker==1.3.1
