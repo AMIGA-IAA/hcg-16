@@ -44,6 +44,7 @@ and modified using the cloud service [mybinder](https://mybinder.org/). There is
 be run using [this link](https://mybinder.org/v2/gh/AMIGA-IAA/hcg-16/master). This service can take some time to start so please
 be patient.
 
+In order to test integration with [EGI Notebooks](https://marketplace.eosc-portal.eu/services/egi-notebooks) in the context of the [European Open Science Cloud](https://eosc-portal.eu/) the Jupyter notebooks have also been uploaded to [EUDAT](https://b2share.eudat.eu/records/adf6e2e942b04561a8640c449b48c14a) and they are now discoverable via the beta instance of [OpenAIRE](https://beta.explore.openaire.eu/search/software?pid=10.23728%2Fb2share.adf6e2e942b04561a8640c449b48c14a).
 
 # 3) Plots for HCG-16 Project in local environment
 
