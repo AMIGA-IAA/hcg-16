@@ -3,6 +3,7 @@ channels:
  - conda-forge
  - bioconda
  - defaults
+ - conda-forge/label/broken
 dependencies:
  - python 3.6.*
  - aplpy 2.0.*
