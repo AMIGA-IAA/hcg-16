@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 mamba env create \
-  --file environment-foo.yml \
+  --file hcg16.yml \
   --prefix ${NB_PYTHON_PREFIX}
 mamba clean -yaf # clean up downloaded files and indexes
 
