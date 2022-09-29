@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+mamba env create \
+  --file environment-foo.yml \
+  --prefix ${NB_PYTHON_PREFIX}
+mamba clean -yaf # clean up downloaded files and indexes
+
 cd plot_scripts/
 wget https://b2share.eudat.eu/api/files/878dbee0-01bf-4b85-8ed3-71818cd223bf/HCG16_final_data.tar.gz
 tar -xzf HCG16_final_data.tar.gz
