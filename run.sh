@@ -140,11 +140,11 @@ fi
 
 ### Install conda environment
 
-if [[ -r environment.yml ]] ; then
+if [[ -r hcg-16.yml ]] ; then
     log " Conda environment downloaded. "
 else
     log " Download conda environment... "
-    $DOWNLOAD_CMD https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/environment.yml
+    $DOWNLOAD_CMD https://raw.githubusercontent.com/AMIGA-IAA/hcg-16/master/hcg-16.yml
 fi
 
 EXISTS_ENV=$(conda env list | grep "hcg-16 ") || $(echo "")
@@ -156,7 +156,7 @@ elif [[ "${EXISTS_ENV}" != "" ]] ; then
     conda activate hcg-16
 else
     log " Install hcg-16 environment... "
-    mamba env create --file environment.yml && \
+    mamba env create --file hcg-16.yml && \
     conda activate hcg-16
 fi
 
