@@ -20,7 +20,7 @@ bash run.sh
 [run.sh](https://github.com/AMIGA-IAA/hcg-16/blob/master/run.sh) will do automatically the following steps:
 * download and install [miniconda](https://docs.conda.io/en/latest/miniconda.html)
 * download and install [cgatcore](https://github.com/cgat-developers/cgat-core/), a workflow management system
-* construct a [conda python environment](https://github.com/AMIGA-IAA/hcg-16/blob/master/environment.yml) with which to run the code
+* construct a [conda python environment](https://github.com/AMIGA-IAA/hcg-16/blob/master/hcg-16.yml) with which to run the code
 * download this repository with the source code of the analysis
 * download the [input data](https://b2share.eudat.eu/records/f8fcd84bcd454bdc8ea0ec2d69bdfe9a)
 * run the [pipeline](https://github.com/AMIGA-IAA/hcg-16/blob/master/cgatcore/pipeline.py)
@@ -63,7 +63,9 @@ source conda-install/etc/profile.d/conda.sh
 ```
 Create and activate the conda environment:
 ```
-conda env create --file environment.yml 
+# mamba is recommended
+conda install mamba -c conda-forge --yes
+mamba env create --file hcg-16.yml
 conda activate hcg-16
 ```
 
