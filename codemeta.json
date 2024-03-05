@@ -1,0 +1,110 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "@type": "SoftwareSourceCode",
+    "license": "https://spdx.org/licenses/MIT",
+    "codeRepository": "git+https://github.com/AMIGA-IAA/hcg-16.git",
+    "dateCreated": "2019-10-09",
+    "datePublished": "2019-10-09",
+    "dateModified": "2021-09-28",
+    "downloadUrl": "https://github.com/AMIGA-IAA/hcg-16/releases/tag/v1.2.1",
+    "issueTracker": "https://github.com/AMIGA-IAA/hcg-16/issues",
+    "name": "Pipeline for HCG-16 Project",
+    "version": "1.2.1",
+    "identifier": "https://zenodo.org/doi/10.5281/zenodo.5534681",
+    "description": "This repository hosts a pipeline to reproduce the data reduction and analysis of Jones et al. 2019.",
+    "applicationCategory": "Astronomy",
+    "developmentStatus": "inactive",
+    "referencePublication": "https://doi.org/10.1051/0004-6361/201936349",
+    "funder": {
+        "@type": "Organization",
+        "name": "MINECO, FEDER"
+    },
+    "keywords": [
+        "Astronomy",
+        "Galaxies",
+        "Galaxy Groups",
+        "Radio Interferometry",
+        "VLA",
+        "HCG16",
+        "HI line emission"
+    ],
+    "programmingLanguage": [
+        "Python"
+    ],
+    "runtimePlatform": [
+        "Python",
+        "Docker"
+    ],
+    "operatingSystem": [
+        "Linux"
+    ],
+    "softwareRequirements": [
+        "https://github.com/AMIGA-IAA/hcg-16/blob/master/conda-linux-64.lock"
+    ],
+    "relatedLink": [
+        "https://ui.adsabs.harvard.edu/abs/2019A%26A...632A..78J/abstract"
+    ],
+    "author": [
+        {
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0002-5434-4904",
+            "givenName": "Michael",
+            "familyName": "Jones",
+            "email": "jonesmg@arizona.edu",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "University of Arizona"
+            }
+        },
+        {
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0002-3143-4798",
+            "givenName": "Sebastian",
+            "familyName": "Luna-Valero",
+            "email": "sebastian.luna.valero@gmail.com",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "EGI Foundation"
+            }
+        },
+        {
+            "@type": "Person",
+            "givenName": "Julian",
+            "familyName": "Garrido"
+        },
+        {
+            "@type": "Person",
+            "givenName": "Susana",
+            "familyName": "Sanchez"
+        }
+    ],
+    "contributor": [
+        {
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0002-5434-4904",
+            "givenName": "Michael",
+            "familyName": "Jones",
+            "email": "jonesmg@arizona.edu",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "University of Arizona"
+            }
+        },
+        {
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0002-3143-4798",
+            "givenName": "Sebastian",
+            "familyName": "Luna-Valero",
+            "email": "sebastian.luna.valero@gmail.com",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "EGI Foundation"
+            }
+        },
+        {
+            "@type": "Person",
+            "givenName": "Julian",
+            "familyName": "Garrido"
+        }
+    ]
+}
