@@ -20,7 +20,7 @@ dependencies:
  # for binder
  - jupyterhub-singleuser
  - alembic 1.7.*
- - jsonschema 3.0.2
+ - mako 1.2.*
  # for oldness
  - jupyter_client=7.1.0
  - jupyter_server=1.13.1
