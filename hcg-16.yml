@@ -19,6 +19,7 @@ dependencies:
  - udocker 1.3.*
  # for binder
  - jupyterhub-singleuser
+ - alembic 1.7.*
  # for oldness
  - jupyter_client=7.1.0
  - jupyter_server=1.13.1
