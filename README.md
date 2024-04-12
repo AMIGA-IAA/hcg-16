@@ -40,11 +40,17 @@ space. Approximately 10 GB will be used in the directory where the pipeline is e
 # 2) Plots for HCG-16 Project on the cloud
 
 If you do not wish to run the whole pipeline on your local machine (almost) all the figures of this project can be regenerated
-and modified using the cloud service [mybinder](https://mybinder.org/). There is a Jupyter notebook for each figure which can
-be run using [this link](https://mybinder.org/v2/gh/AMIGA-IAA/hcg-16/master). This service can take some time to start so please
-be patient.
+and modified using [mybinder](https://mybinder.org/) or [EGI Replay](https://replay.notebooks.egi.eu/). There is a Jupyter
+notebook for each figure which can be run using a link to 
+[mybinder](https://mybinder.org/v2/gh/AMIGA-IAA/hcg-16/HEAD) or
+[EGI Replay](https://replay.notebooks.egi.eu/v2/gh/AMIGA-IAA/hcg-16/HEAD).
+This service can take some time to start so please be patient.
 
-In order to test integration with [EGI Notebooks](https://marketplace.eosc-portal.eu/services/egi-notebooks) in the context of the [European Open Science Cloud](https://eosc-portal.eu/) the Jupyter notebooks have also been uploaded to [EUDAT](https://b2share.eudat.eu/records/adf6e2e942b04561a8640c449b48c14a) and they are now discoverable via the beta instance of [OpenAIRE](https://beta.explore.openaire.eu/search/software?pid=10.23728%2Fb2share.adf6e2e942b04561a8640c449b48c14a).
+In order to test integration with [EGI Notebooks](https://notebooks.egi.eu/) in the context of the
+[European Open Science Cloud](https://research-and-innovation.ec.europa.eu/strategy/strategy-2020-2024/our-digital-future/open-science/european-open-science-cloud-eosc_en)
+the Jupyter notebooks have also been uploaded to
+[EUDAT](https://b2share.eudat.eu/records/adf6e2e942b04561a8640c449b48c14a) and they are now discoverable via
+[OpenAIRE Explore](https://explore.openaire.eu/search/other?pid=10.23728/b2share.adf6e2e942b04561a8640c449b48c14a).
 
 # 3) Plots for HCG-16 Project in local environment
 
