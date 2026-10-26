@@ -6,10 +6,10 @@
     "dateCreated": "2019-10-09",
     "datePublished": "2019-10-09",
     "dateModified": "2021-09-28",
-    "downloadUrl": "https://github.com/AMIGA-IAA/hcg-16/releases/tag/v1.2.1",
+    "downloadUrl": "https://github.com/AMIGA-IAA/hcg-16/releases/tag/v1.2.3",
     "issueTracker": "https://github.com/AMIGA-IAA/hcg-16/issues",
     "name": "Pipeline for HCG-16 Project",
-    "version": "1.2.1",
+    "version": "1.2.3",
     "identifier": "https://zenodo.org/doi/10.5281/zenodo.5534681",
     "description": "This repository hosts a pipeline to reproduce the data reduction and analysis of Jones et al. 2019.",
     "applicationCategory": "Astronomy",
@@ -41,7 +41,7 @@
         "Linux"
     ],
     "softwareRequirements": [
-        "https://github.com/AMIGA-IAA/hcg-16/blob/master/conda-linux-64.lock"
+        "https://github.com/AMIGA-IAA/hcg-16/blob/v1.2.3/conda-linux-64.lock"
     ],
     "relatedLink": [
         "https://ui.adsabs.harvard.edu/abs/2019A%26A...632A..78J/abstract"
@@ -52,10 +52,10 @@
             "@id": "https://orcid.org/0000-0002-5434-4904",
             "givenName": "Michael",
             "familyName": "Jones",
-            "email": "jonesmg@arizona.edu",
+            "email": "mgjones@ipac.caltech.edu",
             "affiliation": {
                 "@type": "Organization",
-                "name": "University of Arizona"
+                "name": "Caltech/IPAC"
             }
         },
         {
@@ -86,10 +86,10 @@
             "@id": "https://orcid.org/0000-0002-5434-4904",
             "givenName": "Michael",
             "familyName": "Jones",
-            "email": "jonesmg@arizona.edu",
+            "email": "mgjones@ipac.caltech.edu",
             "affiliation": {
                 "@type": "Organization",
-                "name": "University of Arizona"
+                "name": "Caltech/IPAC"
             }
         },
         {
@@ -115,10 +115,10 @@
             "@id": "https://orcid.org/0000-0002-5434-4904",
             "givenName": "Michael",
             "familyName": "Jones",
-            "email": "jonesmg@arizona.edu",
+            "email": "mgjones@ipac.caltech.edu",
             "affiliation": {
                 "@type": "Organization",
-                "name": "University of Arizona"
+                "name": "Caltech/IPAC"
             }
         }
     ]
