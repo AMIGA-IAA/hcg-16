@@ -52,10 +52,10 @@
             "@id": "https://orcid.org/0000-0002-5434-4904",
             "givenName": "Michael",
             "familyName": "Jones",
-            "email": "jonesmg@arizona.edu",
+            "email": "mgjones@ipac.caltech.edu",
             "affiliation": {
                 "@type": "Organization",
-                "name": "University of Arizona"
+                "name": "Caltech/IPAC"
             }
         },
         {
@@ -86,10 +86,10 @@
             "@id": "https://orcid.org/0000-0002-5434-4904",
             "givenName": "Michael",
             "familyName": "Jones",
-            "email": "jonesmg@arizona.edu",
+            "email": "mgjones@ipac.caltech.edu",
             "affiliation": {
                 "@type": "Organization",
-                "name": "University of Arizona"
+                "name": "Caltech/IPAC"
             }
         },
         {
@@ -115,10 +115,10 @@
             "@id": "https://orcid.org/0000-0002-5434-4904",
             "givenName": "Michael",
             "familyName": "Jones",
-            "email": "jonesmg@arizona.edu",
+            "email": "mgjones@ipac.caltech.edu",
             "affiliation": {
                 "@type": "Organization",
-                "name": "University of Arizona"
+                "name": "Caltech/IPAC"
             }
         }
     ]
